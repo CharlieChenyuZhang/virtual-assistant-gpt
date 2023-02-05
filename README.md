@@ -17,4 +17,4 @@ Only kept one button with no text showing in UI. Need to click on `start` button
 ![demo-BetterUI](https://user-images.githubusercontent.com/22360911/216835593-37f9749f-a191-492f-8207-d037a57e1c61.png)
 
 version 3: `InteractiveUI.js`
-![image](https://user-images.githubusercontent.com/22360911/216835578-5c4ff025-c78b-4101-837c-c1bd860ac05f.jpg)
+
