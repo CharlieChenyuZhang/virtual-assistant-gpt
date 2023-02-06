@@ -86,24 +86,16 @@ const BetterUI = () => {
   const attemp2 =
     ". At the end, ask a follow up question when appropriate to keep the conversation going.";
 
-  console.log("savedUserInput", savedUserInput);
   async function onSubmit() {
     try {
       try {
         // it saved the previous convo between the AI and bot
-
-        console.log(
-          "data being fed",
-          savedUserInput + ". " + transcript + attemp2
-        );
-
         const completion = await openai.createCompletion({
           model: "text-davinci-003",
           prompt: savedUserInput + ". " + transcript + attemp2,
           temperature: 0.6,
           max_tokens: 200, // FIXME: 2048
         });
-        console.log("completion.data", completion.data);
         const what2say = completion.data.choices[0].text;
         setSavedUserInput(savedUserInput + ". " + transcript + ". " + what2say); // updated the savedUserInput so that it can connect the previous convo
         setChatGptRes(what2say);
@@ -151,7 +143,6 @@ const BetterUI = () => {
     }
   };
 
-  console.log("convoStart", convoStart);
   return (
     <div>
       {/* <p>Microphone: {listening ? "on" : "off"}</p> */}
@@ -162,7 +153,7 @@ const BetterUI = () => {
           onClick={userStartConvo}
           style={{ hover: "cursor" }}
         >
-          clilck me to start
+          click me to start
         </button>
       ) : (
         <button
@@ -180,7 +171,9 @@ const BetterUI = () => {
       )}
 
       {listening && (
-        <p style={{ color: "black", fontSize: "12px" }}>listening...</p>
+        <p style={{ color: "black", fontSize: "12px" }}>
+          ChenYu's listening...
+        </p>
       )}
       <p>{transcript}</p>
       <p style={{ color: "orange" }}>{chatGptRes}</p>
