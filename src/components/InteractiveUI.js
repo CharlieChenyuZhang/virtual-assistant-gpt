@@ -157,7 +157,13 @@ const BetterUI = () => {
       {/* <p>Microphone: {listening ? "on" : "off"}</p> */}
       {/* <span>push to talk: </span> */}
       {!convoStart ? (
-        <button onClick={userStartConvo}>start</button>
+        <button
+          id="start-btn"
+          onClick={userStartConvo}
+          style={{ hover: "cursor" }}
+        >
+          clilck me to start
+        </button>
       ) : (
         <button
           onClick={() => {
@@ -169,7 +175,7 @@ const BetterUI = () => {
             }
           }}
         >
-          stop
+          end the conversation
         </button>
       )}
 
