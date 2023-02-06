@@ -5,6 +5,9 @@ import SpeechRecognition, {
 import { Configuration, OpenAIApi } from "openai";
 import Speech from "speak-tts";
 // import recordBtn from "./record-btn.png";
+import avatar from "../avatar-ai.png";
+
+// TODO: introducing three states. Listening; Speaking; Idling
 
 const configuration = new Configuration({
   apiKey: process.env.REACT_APP_OPENAI_API_KEY,
@@ -147,6 +150,9 @@ const BetterUI = () => {
     <div>
       {/* <p>Microphone: {listening ? "on" : "off"}</p> */}
       {/* <span>push to talk: </span> */}
+      <div>
+        <img src={avatar} style={{ width: "200px", height: "300px" }}></img>
+      </div>
       {!convoStart ? (
         <button
           id="start-btn"

@@ -1,9 +1,9 @@
 import logo from "./logo.svg";
-import avatar from "./avatar-ai.png";
 import "./App.css";
 import Dictaphone from "./components/Dictaphone";
 import BetterUI from "./components/BetterUI";
 import InteractiveUI from "./components/InteractiveUI";
+import Test from "./components/Test";
 
 function App() {
   return (
@@ -15,10 +15,11 @@ function App() {
           currently only support Chrome web browser, and English. More features
           coming soon.
         </i>
-        <img src={avatar} style={{ width: "200px", height: "300px" }}></img>
+
         {/* <Dictaphone /> */}
         {/* <BetterUI /> */}
         <InteractiveUI />
+        {/* <Test></Test> */}
       </header>
     </div>
   );
