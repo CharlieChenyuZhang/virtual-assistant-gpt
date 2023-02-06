@@ -6,7 +6,8 @@ import { Configuration, OpenAIApi } from "openai";
 import Speech from "speak-tts";
 // import recordBtn from "./record-btn.png";
 import avatar from "../avatar-ai.png";
-
+import listeningGif from "../assets/cat-listening.gif";
+import Character from "./Character";
 // TODO: introducing three states. Listening; Speaking; Idling
 
 const configuration = new Configuration({
@@ -146,12 +147,44 @@ const BetterUI = () => {
     }
   };
 
+  const displayStatusText = () => {
+    // state management
+    const STATE_USER_SPEAKING = listening;
+    const STATE_AI_SPEAKING = !listening && convoStart && !!chatGptRes; // FIXME: not good enough
+    const STATE_NOONE_SPEAKING = !convoStart;
+    const STATE_NOONE_SPEAKING_AI_THINKING =
+      convoStart && !listening && !chatGptRes;
+
+    let statusText = "";
+    if (STATE_USER_SPEAKING) {
+      statusText = "go ahead, I am listening...";
+    } else if (STATE_AI_SPEAKING) {
+      statusText = "ChenYu's speaking";
+    } else if (STATE_NOONE_SPEAKING_AI_THINKING) {
+      statusText = "One second, let me think about it...";
+    }
+
+    return (
+      <p
+        style={{
+          color: "black",
+        }}
+      >
+        <mark>{statusText}</mark>
+      </p>
+    );
+  };
+
   return (
     <div>
       {/* <p>Microphone: {listening ? "on" : "off"}</p> */}
       {/* <span>push to talk: </span> */}
       <div>
-        <img src={avatar} style={{ width: "200px", height: "300px" }}></img>
+        <Character
+          chatGptRes={chatGptRes}
+          listening={listening}
+          convoStart={convoStart}
+        ></Character>
       </div>
       {!convoStart ? (
         <button
@@ -176,13 +209,15 @@ const BetterUI = () => {
         </button>
       )}
 
-      {listening && (
-        <p style={{ color: "black", fontSize: "12px" }}>
-          ChenYu's listening...
-        </p>
-      )}
-      <p>{transcript}</p>
-      <p style={{ color: "orange" }}>{chatGptRes}</p>
+      {displayStatusText()}
+      <hr></hr>
+
+      <p style={{ maxWidth: "200px", maxWidth: "400px", margin: "auto" }}>
+        {transcript}
+      </p>
+      <p style={{ color: "orange", maxWidth: "400px", margin: "auto" }}>
+        {chatGptRes}
+      </p>
     </div>
   );
 };

@@ -1,3 +1,16 @@
+# known bugs:
+
+- only support chrome and english
+- if users don't speak at all, then nothing happens -- need to handle error peacefully
+- add the indicatoin whether it's thinking, talking or listening
+
+# future features:
+
+if I add the sentiment analysis to the software, I can choose different memes based on the conversation. here is an example
+https://giphy.com/gifs/StudioModerna-cat-kitty-meow-vgPYVqMaopBV0kbqEX
+
+https://play.google.com/store/apps/details?id=com.outfit7.talkingtom&hl=en_CA&gl=US&pli=1
+
 # how to run the application
 
 ```
