@@ -176,8 +176,8 @@ const BetterUI = () => {
       {listening && (
         <p style={{ color: "black", fontSize: "12px" }}>listening...</p>
       )}
-      <p>You said: {transcript}</p>
-      <p style={{ color: "orange" }}>AI: {chatGptRes}</p>
+      <p>{transcript}</p>
+      <p style={{ color: "orange" }}>{chatGptRes}</p>
     </div>
   );
 };
