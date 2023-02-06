@@ -11,7 +11,10 @@ function App() {
       <header className="App-header">
         {/* <img src={logo} className="App-logo" alt="logo" /> */}
         <b>Virtual Being - ChenYu </b>
-        <i>currently only support Chrome web browser </i>
+        <i>
+          currently only support Chrome web browser, and English. More features
+          coming soon.
+        </i>
         <img src={avatar} style={{ width: "200px", height: "300px" }}></img>
         {/* <Dictaphone /> */}
         {/* <BetterUI /> */}
