@@ -137,6 +137,7 @@ const BetterUI = () => {
   const resetEverything = () => {
     resetTranscript();
     setChatGptRes("");
+    setSavedUserInput("");
   };
 
   const userStartConvo = () => {
