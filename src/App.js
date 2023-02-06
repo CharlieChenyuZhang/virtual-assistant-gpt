@@ -3,7 +3,7 @@ import "./App.css";
 import Dictaphone from "./components/Dictaphone";
 import BetterUI from "./components/BetterUI";
 import InteractiveUI from "./components/InteractiveUI";
-import Test from "./components/Test";
+// import Test from "./components/Test";
 
 function App() {
   return (
