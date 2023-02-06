@@ -10,6 +10,8 @@ function App() {
     <div className="App">
       <header className="App-header">
         {/* <img src={logo} className="App-logo" alt="logo" /> */}
+        <b>Virtual Being - ChenYu </b>
+        <i>currently only support Chrome web browser </i>
         <img src={avatar} style={{ width: "200px", height: "300px" }}></img>
         {/* <Dictaphone /> */}
         {/* <BetterUI /> */}
