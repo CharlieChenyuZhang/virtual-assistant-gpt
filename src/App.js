@@ -10,7 +10,16 @@ function App() {
     <div className="App">
       <header className="App-header">
         {/* <img src={logo} className="App-logo" alt="logo" /> */}
-        <b>Virtual Being - ChenYu </b>
+        <h1>Virtual Being - ChenYu = ChatGPT + Conversational UI </h1>
+        <p>
+          designed with &#10084;&#65039; by{" "}
+          <a
+            href="https://www.linkedin.com/in/charliechenyuzhang/"
+            target="_blank"
+          >
+            Charlie
+          </a>
+        </p>
         <i>
           currently only support Chrome web browser, and English. More features
           coming soon.
