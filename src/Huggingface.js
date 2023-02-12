@@ -21,16 +21,25 @@ const Twitter = styled.img`
 const Container = styled.div`
   text-align: center;
   padding-top: 11rem;
+  margin-left: 3rem;
+  margin-right: 3rem;
 `;
 
 const CatchPhrase1 = styled.h1`
   font-size: 2.75rem;
   line-height: 1;
+
+  @media (max-width: 768px) {
+    font-size: 2rem;
+  }
 `;
 
 const CatchPhrase2 = styled.h2`
   font-size: 1.75rem;
   line-height: 1;
+  @media (max-width: 768px) {
+    font-size: 1.25rem;
+  }
 `;
 
 const Huggingface = () => {
