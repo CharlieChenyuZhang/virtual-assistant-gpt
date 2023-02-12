@@ -1,25 +1,35 @@
 import Typewriter from "typewriter-effect";
 import icon from "./assets/chenyu-icon.png";
+import twitter from "./assets/twitter-icon.png";
 import styled from "styled-components";
 import React, { useEffect } from "react";
 
 const Icon = styled.img`
-  width: 6rem;
-  height: 6rem;
+  width: 10rem;
+  height: 10rem;
+`;
+
+const Twitter = styled.img`
+  width: 3rem;
+  height: 3rem;
+
+  :hover {
+    cursor: pointer;
+  }
 `;
 
 const Container = styled.div`
   text-align: center;
-  padding-top: 7rem;
+  padding-top: 11rem;
 `;
 
 const CatchPhrase1 = styled.h1`
-  font-size: 1.75rem;
+  font-size: 2.75rem;
   line-height: 1;
 `;
 
 const CatchPhrase2 = styled.h2`
-  font-size: 1rem;
+  font-size: 1.75rem;
   line-height: 1;
 `;
 
@@ -49,6 +59,14 @@ const Huggingface = () => {
         <CatchPhrase2>
           以开源社群为驱动来源，构建、训练和部署最先进的人工智能模型
         </CatchPhrase2>
+
+        <a
+          href="https://twitter.com/_chenyuzhang"
+          target="_blank"
+          rel="noreferrer"
+        >
+          <Twitter src={twitter}></Twitter>
+        </a>
       </div>
     </Container>
   );
