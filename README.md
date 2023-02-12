@@ -1,8 +1,19 @@
+# feature
+
+- have a language toggle at the top righr corner to toggle it to 简体中文
+
 # known bugs:
 
 - only support chrome and english
 - if users don't speak at all, then nothing happens -- need to handle error peacefully
-- add the indicatoin whether it's thinking, talking or listening
+- cut too quickly when the user is not speaking
+  - solution 1: constently listening, case 1: if the user interupt me while AI is thinking, case 2: users wait till I finish
+  - solution 2: push button to talk. Keep on pushing the button to record what you want to say. This might have a better experience on mobile browser. [simpler approach]
+
+# fixed bugs:
+
+- add the indicatoin whether it's thinking, talking or listening (meme mode)
+-
 
 # future features:
 
