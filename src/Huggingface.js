@@ -52,9 +52,7 @@ const Huggingface = () => {
     <Container>
       <Icon src={icon}></Icon>
       <div>
-        <CatchPhrase1>
-          晨雨 - 如清晨细雨, 滋养中国乃至全球的AI社群
-          {/* <Typewriter
+        {/* <Typewriter
             options={{
               strings: ["社群", "企业"],
               autoStart: true,
@@ -63,7 +61,8 @@ const Huggingface = () => {
               wrapperClassName: "typewriter",
             }}
           /> */}
-        </CatchPhrase1>
+        <CatchPhrase1>晨雨 - 中国的Hugging Face</CatchPhrase1>
+        <CatchPhrase1>如清晨细雨, 滋养中国乃至全球的AI社群</CatchPhrase1>
 
         <CatchPhrase2>
           以开源社群为驱动来源，构建、训练和部署最先进的人工智能模型
