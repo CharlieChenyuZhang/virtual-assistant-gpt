@@ -53,7 +53,7 @@ const Huggingface = () => {
       <Icon src={icon}></Icon>
       <div>
         <CatchPhrase1>
-          晨雨 - 如清晨雨露, 滋养中国乃至全球的AI社群
+          晨雨 - 如清晨细雨, 滋养中国乃至全球的AI社群
           {/* <Typewriter
             options={{
               strings: ["社群", "企业"],
