@@ -61,7 +61,7 @@ const Huggingface = () => {
               wrapperClassName: "typewriter",
             }}
           /> */}
-        <CatchPhrase1>晨雨 - 中国的Hugging Face</CatchPhrase1>
+        <CatchPhrase1>晨雨 - 打造中国的Hugging Face</CatchPhrase1>
         <CatchPhrase1>如清晨细雨, 滋养中国乃至全球的AI社群</CatchPhrase1>
 
         <CatchPhrase2>
