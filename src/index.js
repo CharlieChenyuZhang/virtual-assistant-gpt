@@ -6,6 +6,7 @@ import LandingPage from "./components/LandingPage";
 // import reportWebVitals from "./reportWebVitals";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Huggingface from "./Huggingface";
+import EmailCompose from "./components/EmailCompose";
 // import * as dotenv from "dotenv"; // see https://github.com/motdotla/dotenv#how-do-i-use-dotenv-with-import
 // dotenv.config();
 
@@ -15,8 +16,8 @@ const router = createBrowserRouter([
     element: <LandingPage />,
   },
   {
-    path: "/resume",
-    element: <App />,
+    path: "/email",
+    element: <EmailCompose />,
   },
   {
     path: "/gpt",
