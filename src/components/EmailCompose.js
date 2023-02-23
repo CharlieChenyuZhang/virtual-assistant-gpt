@@ -1,10 +1,15 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import InteractiveUI from "./InteractiveUI";
 import logo from "../assets/chenyu-cali.png";
 import icon1 from "../assets/icons8-adjust-48.png";
 import icon2 from "../assets/icons8-communication-48.png";
 import icon3 from "../assets/icons8-google-translate-48.png";
+import TextField from "@mui/material/TextField";
+import Box from "@mui/material/Box";
+import AccountCircle from "@mui/icons-material/AccountCircle";
+import CircularProgress from "@mui/material/CircularProgress";
+import { Configuration, OpenAIApi } from "openai";
 
 const WaitListContainer = styled.div`
   width: 100%;
@@ -13,16 +18,7 @@ const WaitListContainer = styled.div`
   padding-top: 7rem;
   padding-bottom: 8rem;
   /* justify-content: center; */
-  text-align: center;
-  align-items: center;
-`;
-const RightContainer = styled.div`
-  width: 50%;
-  background-color: #fbfcfc;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+  text-align: left;
   align-items: center;
 `;
 
@@ -33,12 +29,6 @@ const Header = styled.div`
 const Logo = styled.img`
   width: 6rem;
   height: 4rem;
-  /* position: fixed; */
-`;
-
-const Icon = styled.img`
-  width: 2rem;
-  height: 2rem;
   /* position: fixed; */
 `;
 
@@ -82,68 +72,74 @@ const Button = styled.a`
   }
 `;
 
-const FeatureContainer = styled.div`
-  background: linear-gradient(
-    355deg,
-    rgba(118, 108, 222, 0.08587184873949583) 0%,
-    rgba(249, 130, 59, 0.0718662464985994) 57%
+const Category = styled.div`
+  margin-top: 15px;
+`;
+
+const configuration = new Configuration({
+  apiKey: process.env.REACT_APP_OPENAI_API_KEY,
+});
+
+const openai = new OpenAIApi(configuration);
+
+const EmailCompose = () => {
+  const [isLoading, setIsLoading] = useState(false);
+  const [senderName, setSenderName] = useState("");
+  const [supplierName, setSupplierName] = useState("");
+  const [argument1, setArgument1] = useState(
+    "We have researched comparable suppliers and offerings. We are wondering whether we can get a 40% discount?"
+  );
+  const [argument2, setArgument2] = useState(
+    "If we buy more than 10 licenses, can we get a further volume discount?"
+  );
+  const [argument3, setArgument3] = useState(
+    "Can we have a payment term of 90 days?"
   );
 
-  height: 25rem;
+  async function onSubmit() {
+    try {
+      try {
+        // it saved the previous convo between the AI and bot
+        setIsLoading(true);
+        let completion = await openai.createCompletion({
+          model: "text-davinci-003",
+          prompt: `Write me asentence similar to the following one. Keep the number the same. ${argument1}`, // FIXME:
+          temperature: 0.8,
+          max_tokens: 200,
+        });
+        setArgument1(completion.data.choices[0].text);
 
-  @media only screen and (max-width: 600px) {
-    height: auto;
+        completion = await openai.createCompletion({
+          model: "text-davinci-003",
+          prompt: `Write me asentence similar to the following one. Keep the number the same. ${argument2}`, // FIXME:
+          temperature: 0.6,
+          max_tokens: 200,
+        });
+        setArgument2(completion.data.choices[0].text);
+
+        completion = await openai.createCompletion({
+          model: "text-davinci-003",
+          prompt: `Write me asentence similar to the following one. Keep the number the same. ${argument3}`, // FIXME:
+          temperature: 0.6,
+          max_tokens: 200,
+        });
+        setArgument3(completion.data.choices[0].text);
+      } catch (error) {
+        setIsLoading(false);
+        // Consider adjusting the error handling logic for your use case
+        if (error.response) {
+          console.error(error.response.status, error.response.data);
+        } else {
+          console.error(`Error with OpenAI API request: ${error.message}`);
+        }
+      }
+    } catch (error) {
+      setIsLoading(false);
+      // Consider implementing your own error handling logic here
+      console.error(error);
+    }
   }
-`;
 
-const FeatureInnerContainer = styled.div`
-  display: flex;
-  height: 100%;
-
-  @media only screen and (max-width: 600px) {
-    flex-direction: column;
-  }
-`;
-
-const SocialContainer = styled.div`
-  height: 20rem;
-
-  line-height: 1.25;
-  font-weight: 600;
-  font-size: 1.5rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  justify-content: center;
-`;
-
-const LeftFeatureDescription = styled.div`
-  /* width: 20%; */
-  max-width: 300px;
-  margin: auto;
-  text-align: center;
-  line-height: 1.25;
-  font-weight: 600;
-  font-size: 1.5rem;
-
-  @media only screen and (max-width: 600px) {
-    margin-top: 1rem;
-    margin-bottom: 2rem;
-  }
-`;
-
-const SubCaption = styled.div`
-  margin-top: 20px;
-  font-weight: 400;
-  font-size: 1.1rem;
-`;
-
-const RightFeatureContainer = styled.div`
-  width: 80%;
-`;
-
-const LandingPage = () => {
   return (
     <div>
       <div className="container">
@@ -152,80 +148,76 @@ const LandingPage = () => {
         </Header>
 
         <WaitListContainer>
-          {/* <H1>
-            Accelerate your language learning journey with your ultimate
-            language learning partner!
-          </H1>
-          <H1>
-            Revolutionize your language learning with our AI-powered partner -
-            your personal language coach available 24/7!
-          </H1>
-          <H1>master any language with AI - smarter, cheaper, better.</H1>
-          <H1>
-            Empower your language learning with our AI-powered partner -
-            accelerate your progress and fluency like never before!"
-          </H1> */}
-          <H1>
-            Revolutionize your language learning with AI-powered language coach.
-          </H1>
-          <SecondPhrase>
-            Join us today and start your journey towards mastering a new
-            language!
-          </SecondPhrase>
-          <Button href="https://forms.gle/YETzBpsfWfhxeow89" target="_blank">
-            join waitlist
+          <Box sx={{ display: "flex", alignItems: "flex-end" }}>
+            <AccountCircle sx={{ color: "action.active", mr: 1, my: 0.5 }} />
+            <TextField
+              id="input-with-sx"
+              label="sender's first name"
+              variant="standard"
+              onChange={(e) => {
+                setSenderName(e.target.value);
+              }}
+            />
+          </Box>
+
+          <Box
+            sx={{ display: "flex", alignItems: "flex-end", marginTop: "15px" }}
+          >
+            <AccountCircle sx={{ color: "action.active", mr: 1, my: 0.5 }} />
+            <TextField
+              id="input-with-sx"
+              label="supplier's first name"
+              variant="standard"
+              onChange={(e) => {
+                setSupplierName(e.target.value);
+              }}
+            />
+          </Box>
+
+          <Box sx={{ display: "flex", alignItems: "flex-end" }}>
+            <Category>Category: Software</Category>
+          </Box>
+
+          <Button
+            onClick={async () => {
+              await onSubmit();
+              setIsLoading(false);
+            }}
+          >
+            generate new
           </Button>
+
+          {!isLoading ? (
+            <div>
+              Hi {supplierName},
+              <br />
+              <br />
+              Thanks for sending us quote. We reviewed and have a few
+              suggestions.
+              <br />
+              <ol>
+                <li>{argument1}</li>
+                <li>{argument2}</li>
+                <li>{argument3}</li>
+              </ol>
+              Here at Trusli, we consider our suppliers as strategic partners.
+              We are trying our best to find a win-win for us. We appreciate
+              your flexibility and hope this will become a long term, beneficial
+              account for you.
+              <br />
+              <br />
+              Best,
+              <br />
+              <br />
+              {senderName}
+            </div>
+          ) : (
+            <CircularProgress style={{ marginTop: "50px" }} />
+          )}
         </WaitListContainer>
-        {/* <RightContainer>
-        <InteractiveUI />
-      </RightContainer> */}
       </div>
-      <FeatureContainer>
-        <FeatureInnerContainer className="container">
-          <LeftFeatureDescription>
-            <div>
-              <Icon src={icon1}></Icon>
-            </div>
-            personalized learning
-            <SubCaption>
-              It adapts to your learning style and pace, providing personalized
-              exercises and feedback to help achieve your language learning
-              goals, regardless of your level.
-            </SubCaption>
-          </LeftFeatureDescription>
-
-          <LeftFeatureDescription>
-            <div>
-              <Icon src={icon2}></Icon>
-            </div>
-            highly interactive
-            <SubCaption>
-              It engages you in natural and dynamic conversations, improving
-              your language skills in real-world situations.
-            </SubCaption>
-          </LeftFeatureDescription>
-          <LeftFeatureDescription>
-            <div>
-              <Icon src={icon3}></Icon>
-            </div>
-            multilingual support
-            <SubCaption>
-              It supports a wide range of languages, including English, Spanish,
-              French, German, Chinese, Japanese, and many more.
-            </SubCaption>
-          </LeftFeatureDescription>
-
-          {/* <RightFeatureContainer>card view</RightFeatureContainer> */}
-        </FeatureInnerContainer>
-      </FeatureContainer>
-      <SocialContainer>
-        Join now and get ready to revolutionize the way you learn!
-        <Button href="https://forms.gle/YETzBpsfWfhxeow89" target="_blank">
-          join waitlist
-        </Button>
-      </SocialContainer>
     </div>
   );
 };
 
-export default LandingPage;
+export default EmailCompose;
