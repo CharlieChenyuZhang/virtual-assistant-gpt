@@ -10,7 +10,7 @@ function App() {
     <div className="App">
       <header className="App-header">
         {/* <img src={logo} className="App-logo" alt="logo" /> */}
-        <h1>Virtual Being - ChenYu = ChatGPT + Conversational UI </h1>
+        {/* <h1>Virtual Being - ChenYu = ChatGPT + Conversational UI </h1>
         <p>
           designed with &#10084;&#65039; by{" "}
           <a
@@ -23,7 +23,7 @@ function App() {
         <i>
           currently only support Chrome web browser, and English. More features
           coming soon.
-        </i>
+        </i> */}
 
         {/* <Dictaphone /> */}
         {/* <BetterUI /> */}

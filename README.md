@@ -1,6 +1,15 @@
-# feature
+# TODO
+
+purchase chenyu.ai (currently available for 150 CAD) or chenyu.com or chenyu.cn domain
+
+# todos / feature
 
 - have a language toggle at the top righr corner to toggle it to 简体中文
+- user sign in through google or through a valid
+- refactor the js to typescript
+- It also provides a comprehensive learning experience, covering all aspects of
+  language learning, including grammar, vocabulary, listening,
+  speaking, and reading.
 
 # known bugs:
 
@@ -9,6 +18,10 @@
 - cut too quickly when the user is not speaking
   - solution 1: constently listening, case 1: if the user interupt me while AI is thinking, case 2: users wait till I finish
   - solution 2: push button to talk. Keep on pushing the button to record what you want to say. This might have a better experience on mobile browser. [simpler approach]
+
+# design principle
+
+- each modeul has to be easy to swap (for example, I can swap google TTS to Amazon's TTS module easily) unified interface
 
 # fixed bugs:
 

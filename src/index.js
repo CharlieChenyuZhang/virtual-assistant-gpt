@@ -2,6 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./App";
+import LandingPage from "./components/LandingPage";
 // import reportWebVitals from "./reportWebVitals";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Huggingface from "./Huggingface";
@@ -11,10 +12,18 @@ import Huggingface from "./Huggingface";
 const router = createBrowserRouter([
   {
     path: "/",
+    element: <LandingPage />,
+  },
+  {
+    path: "/resume",
     element: <App />,
   },
   {
-    path: "/chinese-huggingface",
+    path: "/gpt",
+    element: <App />,
+  },
+  {
+    path: "/huggingface",
     element: <Huggingface />,
   },
 ]);

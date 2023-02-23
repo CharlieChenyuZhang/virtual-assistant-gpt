@@ -17,7 +17,7 @@ import idlingGif from "../assets/cat-waiting.gif";
 import thinkingGIf from "../assets/cat-thinking.gif";
 
 export default function SimpleBottomNavigation(props) {
-  const [value, setValue] = React.useState(0);
+  const [value, setValue] = React.useState(2);
   const { listening, convoStart, chatGptRes } = props;
 
   const selectState = () => {
@@ -93,7 +93,7 @@ export default function SimpleBottomNavigation(props) {
 
   return (
     <Box sx={{ width: 500 }}>
-      <BottomNavigation
+      {/* <BottomNavigation
         sx={{
           bgcolor: "#ece3ce",
         }}
@@ -112,7 +112,7 @@ export default function SimpleBottomNavigation(props) {
           label="virtual being - WIP"
           icon={<Person3Icon />}
         />
-      </BottomNavigation>
+      </BottomNavigation> */}
       {selectCharacter()}
     </Box>
   );
