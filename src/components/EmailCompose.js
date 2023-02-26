@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import InteractiveUI from "./InteractiveUI";
-import logo from "../assets/chenyu-cali.png";
+import logo from "../assets/trusli-icon.png";
 import icon1 from "../assets/icons8-adjust-48.png";
 import icon2 from "../assets/icons8-communication-48.png";
 import icon3 from "../assets/icons8-google-translate-48.png";
@@ -96,6 +96,38 @@ const EmailCompose = () => {
     "Can we have a payment term of 90 days?"
   );
 
+  const [wholeEmail, setWholeEmail] = useState("");
+
+  const template = `
+      Hi ${supplierName ? supplierName : "[supplier_first_name]"}, <br />
+      <br />
+      Thanks for sending us quote. We reviewed and have a few suggestions.
+      <ol>
+        <li>
+          We have researched comparable suppliers and offerings. We are
+          wondering whether we can get a 40% discount?
+        </li>
+        <li>
+          If we buy more than 10 licenses, can we get a further volume discount?
+        </li>
+        <li>Would you be open to waive the support and maintenance fee? </li>
+        <li>Can we have a payment term of 90 days? </li>
+        <li>Can you also delete the auto renewal provision? </li>
+        <li>
+          We would like to be able to cancel this purchase when we want to. Can
+          we include this as part of the terms?
+        </li>
+      </ol>
+      Here at Trusli, we consider our suppliers as strategic partners. We are
+      trying our best to find a win-win for us. We appreciate your flexibility
+      and hope this will become a long term, beneficial account for you.
+      <br />
+      <br />
+      Best,
+      <br />
+      <br />
+      ${senderName ? senderName : "[sender_first_name]"}`;
+
   async function onSubmit() {
     try {
       try {
@@ -103,27 +135,35 @@ const EmailCompose = () => {
         setIsLoading(true);
         let completion = await openai.createCompletion({
           model: "text-davinci-003",
-          prompt: `Write me asentence similar to the following one. Keep the number the same. ${argument1}`, // FIXME:
-          temperature: 0.8,
-          max_tokens: 200,
+          prompt: `Help me polish the following email. Please use a polite and professional tone throughout the email to argue for a better deal.  Keep the number the same. Follow the email structure with HTML code to showcase line break. ${template}`, // FIXME:
+          temperature: 0.7,
+          max_tokens: 2000,
         });
-        setArgument1(completion.data.choices[0].text);
+        setWholeEmail(completion.data.choices[0].text);
 
-        completion = await openai.createCompletion({
-          model: "text-davinci-003",
-          prompt: `Write me asentence similar to the following one. Keep the number the same. ${argument2}`, // FIXME:
-          temperature: 0.6,
-          max_tokens: 200,
-        });
-        setArgument2(completion.data.choices[0].text);
+        // completion = await openai.createCompletion({
+        //   model: "text-davinci-003",
+        //   prompt: `Write me a similar email to the following one. Keep the number the same. ${argument1}`, // FIXME:
+        //   temperature: 0.8,
+        //   // max_tokens: 200,
+        // });
+        // setArgument1(completion.data.choices[0].text);
 
-        completion = await openai.createCompletion({
-          model: "text-davinci-003",
-          prompt: `Write me asentence similar to the following one. Keep the number the same. ${argument3}`, // FIXME:
-          temperature: 0.6,
-          max_tokens: 200,
-        });
-        setArgument3(completion.data.choices[0].text);
+        // completion = await openai.createCompletion({
+        //   model: "text-davinci-003",
+        //   prompt: `Write me asentence similar to the following one. Keep the number the same. ${argument2}`, // FIXME:
+        //   temperature: 0.6,
+        //   // max_tokens: 200,
+        // });
+        // setArgument2(completion.data.choices[0].text);
+
+        // completion = await openai.createCompletion({
+        //   model: "text-davinci-003",
+        //   prompt: `Write me asentence similar to the following one. Keep the number the same. ${argument3}`, // FIXME:
+        //   temperature: 0.6,
+        //   // max_tokens: 200,
+        // });
+        // setArgument3(completion.data.choices[0].text);
       } catch (error) {
         setIsLoading(false);
         // Consider adjusting the error handling logic for your use case
@@ -159,7 +199,6 @@ const EmailCompose = () => {
               }}
             />
           </Box>
-
           <Box
             sx={{ display: "flex", alignItems: "flex-end", marginTop: "15px" }}
           >
@@ -173,11 +212,9 @@ const EmailCompose = () => {
               }}
             />
           </Box>
-
           <Box sx={{ display: "flex", alignItems: "flex-end" }}>
             <Category>Category: Software</Category>
           </Box>
-
           <Button
             onClick={async () => {
               await onSubmit();
@@ -186,8 +223,7 @@ const EmailCompose = () => {
           >
             generate new
           </Button>
-
-          {!isLoading ? (
+          {/* {!isLoading ? (
             <div>
               Hi {supplierName},
               <br />
@@ -211,6 +247,15 @@ const EmailCompose = () => {
               <br />
               {senderName}
             </div>
+          ) : (
+            <CircularProgress style={{ marginTop: "50px" }} />
+          )} */}
+          <h4 style={{ marginTop: "40px" }}>Original Tempalte:</h4>
+          <div dangerouslySetInnerHTML={{ __html: template }} />
+
+          <h4>ChatGPT Polished Email:</h4>
+          {!isLoading ? (
+            <div dangerouslySetInnerHTML={{ __html: wholeEmail }} />
           ) : (
             <CircularProgress style={{ marginTop: "50px" }} />
           )}

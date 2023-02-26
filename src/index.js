@@ -16,6 +16,10 @@ const router = createBrowserRouter([
     element: <LandingPage />,
   },
   {
+    path: "/portfolio-tracker",
+    element: <LandingPage />,
+  },
+  {
     path: "/email",
     element: <EmailCompose />,
   },
