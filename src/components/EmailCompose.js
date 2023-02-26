@@ -253,7 +253,7 @@ const EmailCompose = () => {
           <h4 style={{ marginTop: "40px" }}>Original Tempalte:</h4>
           <div dangerouslySetInnerHTML={{ __html: template }} />
 
-          <h4>ChatGPT Polished Email:</h4>
+          <h4 style={{ marginTop: "40px" }}>ChatGPT Polished Email:</h4>
           {!isLoading ? (
             <div dangerouslySetInnerHTML={{ __html: wholeEmail }} />
           ) : (

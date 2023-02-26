@@ -16,7 +16,7 @@ const router = createBrowserRouter([
     element: <LandingPage />,
   },
   {
-    path: "/portfolio-tracker",
+    path: "/twitter",
     element: <LandingPage />,
   },
   {
