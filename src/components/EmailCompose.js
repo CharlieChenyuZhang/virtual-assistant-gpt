@@ -180,6 +180,10 @@ const EmailCompose = () => {
     }
   }
 
+  useEffect(() => {
+    document.getElementsByTagName("title")[0].text = "Trusli - Email Composer";
+  });
+
   return (
     <div>
       <div className="container">

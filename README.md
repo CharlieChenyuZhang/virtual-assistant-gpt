@@ -65,3 +65,6 @@ https://docs.google.com/document/d/1LyIkLM6NeVX2qAccUZHd_1AKzM2uySX6pEamo6ix_9I/
 # Twitter dependency url
 
 https://github.com/saurabhnemade/react-twitter-embed
+
+twitter documentation
+https://developer.twitter.com/en/docs/twitter-for-websites/embedded-tweets/guides/embedded-tweet-javascript-factory-function
