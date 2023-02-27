@@ -51,6 +51,55 @@ const TweetsContainer = styled.div`
   margin: auto;
 `;
 
+const Button = styled.a`
+  margin-top: 1rem;
+  font-weight: 700;
+  font-size: 1.125rem;
+  border: solid 1px;
+  cursor: pointer;
+  padding: 0.25rem 0.75rem;
+  width: fit-content;
+
+  transition: 0.5s;
+  background-size: 200% auto;
+  color: white;
+  /* text-shadow: 0px 0px 10px rgba(0,0,0,0.2);*/
+  box-shadow: 0 0 20px #eee;
+  border-radius: 10px;
+  pointer-events: ${(props) => (props.disabled ? "none" : "auto")};
+
+  background-image: ${(props) =>
+    props.disabled
+      ? `linear-gradient(
+      to right,
+      lightgrey 0%,
+      grey 51%,
+      grey 100%
+    )`
+      : `linear-gradient(
+    to right,
+    #f6d365 0%,
+    #fda085 51%,
+    #f6d365 100%
+  )`};
+
+  :hover {
+    background-position: right center;
+    text-decoration: none;
+  }
+`;
+
+const EmailContainer = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding-top: 7rem;
+  padding-bottom: 8rem;
+  /* justify-content: center; */
+  text-align: left;
+  align-items: center;
+`;
+
 const configuration = new Configuration({
   apiKey: process.env.REACT_APP_OPENAI_API_KEY,
 });
@@ -59,7 +108,8 @@ const openai = new OpenAIApi(configuration);
 
 const PortfolioManagement = () => {
   const [isLoading, setIsLoading] = useState(false);
-
+  const [showPortfolios, setShowPortfolios] = useState(false);
+  const [wholeEmail, setWholeEmail] = useState("");
   async function onSubmit() {
     try {
       try {
@@ -67,11 +117,11 @@ const PortfolioManagement = () => {
         setIsLoading(true);
         let completion = await openai.createCompletion({
           model: "text-davinci-003",
-          prompt: ``, // FIXME:
+          prompt: `Hi, I want to create a personalized reporting newslette for Beta Fellowship. The goal of the newsletter is to provide a weekly update for the venture capital on the portfolio startups. The name of the company is Beta Fellowship. We offer funding, mentorship and networking opportunities for Chinese and American audiences. Could you please suggest a body text for my newsletter with a separate paragraph for the placeholder where I can insert the weekly updates of the portfolio companies? For the placeholder text, please use [Insert company name and update here.] .Write in a friendly and welcoming tone. `,
           temperature: 0.7,
           max_tokens: 2000,
         });
-        const resp = completion.data.choices[0].text;
+        setWholeEmail(completion.data.choices[0].text);
       } catch (error) {
         setIsLoading(false);
         // Consider adjusting the error handling logic for your use case
@@ -114,83 +164,114 @@ const PortfolioManagement = () => {
             for it to work
           </h1>
           <PortfolioImg src={portfolio3} alt="portfolio"></PortfolioImg>
-          <TweetsContainer>
-            <TwitterTweetEmbed
-              tweetId={"1499076368818049025"}
-              placeholder={
-                <div
-                  style={{
-                    display: "flex",
-                    justifyContent: "center",
-                    width: "100%",
-                  }}
-                >
-                  <CircularProgress />
-                </div>
-              }
-              // options={{ width: "100%" }}
-            />
-            <TwitterTweetEmbed
-              tweetId={"1602756721243435008"}
-              placeholder={
-                <div
-                  style={{
-                    display: "flex",
-                    justifyContent: "center",
-                    width: "100%",
-                  }}
-                >
-                  <CircularProgress />
-                </div>
-              }
-              // options={{ width: "200px" }}
-            />
-            <TwitterTweetEmbed
-              tweetId={"1618672173685821441"}
-              placeholder={
-                <div
-                  style={{
-                    display: "flex",
-                    justifyContent: "center",
-                    width: "100%",
-                  }}
-                >
-                  <CircularProgress />
-                </div>
-              }
-              // options={{ width: "200px" }}
-            />
-            <TwitterTweetEmbed
-              tweetId={"1590413388424704000"}
+          <Button
+            onClick={() => {
+              setShowPortfolios(!showPortfolios);
+            }}
+          >
+            toggle the display of portfolios
+          </Button>
+          {showPortfolios && (
+            <TweetsContainer>
+              <TwitterTweetEmbed
+                tweetId={"1499076368818049025"}
+                placeholder={
+                  <div
+                    style={{
+                      display: "flex",
+                      justifyContent: "center",
+                      width: "100%",
+                    }}
+                  >
+                    <CircularProgress />
+                  </div>
+                }
+                // options={{ width: "100%" }}
+              />
+              <TwitterTweetEmbed
+                tweetId={"1602756721243435008"}
+                placeholder={
+                  <div
+                    style={{
+                      display: "flex",
+                      justifyContent: "center",
+                      width: "100%",
+                    }}
+                  >
+                    <CircularProgress />
+                  </div>
+                }
+                // options={{ width: "200px" }}
+              />
+              <TwitterTweetEmbed
+                tweetId={"1618672173685821441"}
+                placeholder={
+                  <div
+                    style={{
+                      display: "flex",
+                      justifyContent: "center",
+                      width: "100%",
+                    }}
+                  >
+                    <CircularProgress />
+                  </div>
+                }
+                // options={{ width: "200px" }}
+              />
+              <TwitterTweetEmbed
+                tweetId={"1590413388424704000"}
 
-              // options={{ width: "200px" }}
-            />
-            <TwitterTweetEmbed
-              tweetId={"1628092687093207041"}
+                // options={{ width: "200px" }}
+              />
+              <TwitterTweetEmbed
+                tweetId={"1628092687093207041"}
 
-              // options={{ width: "200px" }}
-            />
-            <TwitterTweetEmbed
-              tweetId={"1417792765782499329"}
+                // options={{ width: "200px" }}
+              />
+              <TwitterTweetEmbed
+                tweetId={"1417792765782499329"}
 
-              // options={{ width: "200px" }}
-            />
-            <TwitterTweetEmbed
-              tweetId={"1629244892026396672"}
+                // options={{ width: "200px" }}
+              />
+              <TwitterTweetEmbed
+                tweetId={"1629244892026396672"}
 
-              // options={{ width: "200px" }}
-            />
-            <TwitterTweetEmbed
-              tweetId={"1629232898124529664"}
+                // options={{ width: "200px" }}
+              />
+              <TwitterTweetEmbed
+                tweetId={"1629232898124529664"}
 
-              // options={{ width: "200px" }}
-            />
-          </TweetsContainer>
+                // options={{ width: "200px" }}
+              />
+            </TweetsContainer>
+          )}
 
           <h1 style={{ textAlign: "center", marginTop: "80px" }}>
             Companies Where Beta Fellows Are Coming From
           </h1>
           <PortfolioImg src={betaCompanies} alt="portfolio"></PortfolioImg>
+
+          <Button
+            onClick={async () => {
+              await onSubmit();
+              setIsLoading(false);
+            }}
+            disabled={isLoading ? true : false}
+          >
+            generate weekly newsletter
+          </Button>
+
+          <div style={{ minHeight: "300px", marginBottom: "100px" }}>
+            {!isLoading ? (
+              <div
+                dangerouslySetInnerHTML={{
+                  __html: wholeEmail.replaceAll("\n", "<br />"),
+                }}
+              />
+            ) : (
+              <CircularProgress style={{ marginTop: "50px" }} />
+            )}
+          </div>
         </Header>
       </div>
     </div>

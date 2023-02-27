@@ -68,3 +68,7 @@ https://github.com/saurabhnemade/react-twitter-embed
 
 twitter documentation
 https://developer.twitter.com/en/docs/twitter-for-websites/embedded-tweets/guides/embedded-tweet-javascript-factory-function
+
+# backend - WIP
+
+https://github.com/CharlieChenyuZhang/chatgpt-backend

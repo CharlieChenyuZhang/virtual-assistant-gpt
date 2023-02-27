@@ -11,7 +11,7 @@ import AccountCircle from "@mui/icons-material/AccountCircle";
 import CircularProgress from "@mui/material/CircularProgress";
 import { Configuration, OpenAIApi } from "openai";
 
-const WaitListContainer = styled.div`
+const InputContainer = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -191,7 +191,7 @@ const EmailCompose = () => {
           <Logo src={logo} alt="listening"></Logo>
         </Header>
 
-        <WaitListContainer>
+        <InputContainer>
           <Box sx={{ display: "flex", alignItems: "flex-end" }}>
             <AccountCircle sx={{ color: "action.active", mr: 1, my: 0.5 }} />
             <TextField
@@ -263,7 +263,7 @@ const EmailCompose = () => {
           ) : (
             <CircularProgress style={{ marginTop: "50px" }} />
           )}
-        </WaitListContainer>
+        </InputContainer>
       </div>
     </div>
   );
