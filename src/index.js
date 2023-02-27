@@ -1,48 +1,17 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
-import App from "./App";
-import LandingPage from "./components/LandingPage";
-// import reportWebVitals from "./reportWebVitals";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import Huggingface from "./Huggingface";
-import PortfolioManagement from "./components/PortfolioManagement";
-import EmailCompose from "./external/src/EmailCompose";
-// import * as dotenv from "dotenv"; // see https://github.com/motdotla/dotenv#how-do-i-use-dotenv-with-import
-// dotenv.config();
+import App from "./EmailCompose";
+import reportWebVitals from "./reportWebVitals";
 
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <LandingPage />,
-  },
-  // deployed the portfolio management for beta fellowship
-  {
-    path: "/beta-fellowship",
-    element: <PortfolioManagement />,
-  },
-  // deployed the email composing feature for trusli
-  {
-    path: "/email",
-    element: <EmailCompose />,
-  },
-  {
-    path: "/gpt",
-    element: <App />,
-  },
-  {
-    path: "/huggingface",
-    element: <Huggingface />,
-  },
-]);
-
-ReactDOM.createRoot(document.getElementById("root")).render(
+const root = ReactDOM.createRoot(document.getElementById("root"));
+root.render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <App />
   </React.StrictMode>
 );
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-// reportWebVitals();
+reportWebVitals();
