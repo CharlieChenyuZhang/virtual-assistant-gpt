@@ -136,30 +136,6 @@ const EmailCompose = () => {
           max_tokens: 2000,
         });
         setWholeEmail(completion.data.choices[0].text);
-
-        // completion = await openai.createCompletion({
-        //   model: "text-davinci-003",
-        //   prompt: `Write me a similar email to the following one. Keep the number the same. ${argument1}`, // FIXME:
-        //   temperature: 0.8,
-        //   // max_tokens: 200,
-        // });
-        // setArgument1(completion.data.choices[0].text);
-
-        // completion = await openai.createCompletion({
-        //   model: "text-davinci-003",
-        //   prompt: `Write me asentence similar to the following one. Keep the number the same. ${argument2}`, // FIXME:
-        //   temperature: 0.6,
-        //   // max_tokens: 200,
-        // });
-        // setArgument2(completion.data.choices[0].text);
-
-        // completion = await openai.createCompletion({
-        //   model: "text-davinci-003",
-        //   prompt: `Write me asentence similar to the following one. Keep the number the same. ${argument3}`, // FIXME:
-        //   temperature: 0.6,
-        //   // max_tokens: 200,
-        // });
-        // setArgument3(completion.data.choices[0].text);
       } catch (error) {
         setIsLoading(false);
         // Consider adjusting the error handling logic for your use case
@@ -223,33 +199,6 @@ const EmailCompose = () => {
           >
             generate new
           </Button>
-          {/* {!isLoading ? (
-            <div>
-              Hi {supplierName},
-              <br />
-              <br />
-              Thanks for sending us quote. We reviewed and have a few
-              suggestions.
-              <br />
-              <ol>
-                <li>{argument1}</li>
-                <li>{argument2}</li>
-                <li>{argument3}</li>
-              </ol>
-              Here at Trusli, we consider our suppliers as strategic partners.
-              We are trying our best to find a win-win for us. We appreciate
-              your flexibility and hope this will become a long term, beneficial
-              account for you.
-              <br />
-              <br />
-              Best,
-              <br />
-              <br />
-              {senderName}
-            </div>
-          ) : (
-            <CircularProgress style={{ marginTop: "50px" }} />
-          )} */}
           <h4 style={{ marginTop: "40px" }}>Original Tempalte:</h4>
           <div dangerouslySetInnerHTML={{ __html: template }} />
 
