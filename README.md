@@ -61,3 +61,7 @@ This version ask a follow up question and start listening to users again to enga
 
 Trusli Pourcurment Documentation
 https://docs.google.com/document/d/1LyIkLM6NeVX2qAccUZHd_1AKzM2uySX6pEamo6ix_9I/edit
+
+# Twitter dependency url
+
+https://github.com/saurabhnemade/react-twitter-embed
