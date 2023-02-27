@@ -7,7 +7,7 @@ import LandingPage from "./components/LandingPage";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Huggingface from "./Huggingface";
 import PortfolioManagement from "./components/PortfolioManagement";
-import EmailCompose from "./components/EmailCompose";
+import EmailCompose from "./external/src/EmailCompose";
 // import * as dotenv from "dotenv"; // see https://github.com/motdotla/dotenv#how-do-i-use-dotenv-with-import
 // dotenv.config();
 

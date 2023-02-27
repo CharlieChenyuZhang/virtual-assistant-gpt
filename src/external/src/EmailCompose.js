@@ -1,10 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import InteractiveUI from "./InteractiveUI";
-import logo from "../assets/trusli-icon.png";
-import icon1 from "../assets/icons8-adjust-48.png";
-import icon2 from "../assets/icons8-communication-48.png";
-import icon3 from "../assets/icons8-google-translate-48.png";
+import logo from "./trusli-icon.png";
 import TextField from "@mui/material/TextField";
 import Box from "@mui/material/Box";
 import AccountCircle from "@mui/icons-material/AccountCircle";
