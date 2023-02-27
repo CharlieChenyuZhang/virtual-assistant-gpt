@@ -119,7 +119,7 @@ const PortfolioManagement = () => {
           model: "text-davinci-003",
           prompt: `Hi, I want to create a personalized reporting newslette for Beta Fellowship. The goal of the newsletter is to provide a weekly update for the venture capital on the portfolio startups. The name of the company is Beta Fellowship. We offer funding, mentorship and networking opportunities for Chinese and American audiences. Could you please suggest a body text for my newsletter with a separate paragraph for the placeholder where I can insert the weekly updates of the portfolio companies? For the placeholder text, please use [Insert company name and update here.] .Write in a friendly and welcoming tone. `,
           temperature: 0.7,
-          max_tokens: 2000,
+          max_tokens: 3000,
         });
         setWholeEmail(completion.data.choices[0].text);
       } catch (error) {
