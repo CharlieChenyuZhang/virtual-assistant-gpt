@@ -254,7 +254,7 @@ const EmailCompose = () => {
           ) : (
             <CircularProgress style={{ marginTop: "50px" }} />
           )} */}
-          <h4 style={{ marginTop: "40px" }}>Original Tempalte:</h4>
+          <h4 style={{ marginTop: "40px" }}>Original Template:</h4>
           <div dangerouslySetInnerHTML={{ __html: template }} />
 
           <h4 style={{ marginTop: "40px" }}>ChatGPT Polished Email:</h4>
