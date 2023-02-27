@@ -18,7 +18,7 @@ const router = createBrowserRouter([
   },
   // deployed the portfolio management for beta fellowship
   {
-    path: "/beta",
+    path: "/beta-fellowship",
     element: <PortfolioManagement />,
   },
   // deployed the email composing feature for trusli
