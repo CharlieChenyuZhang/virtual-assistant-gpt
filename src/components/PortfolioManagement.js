@@ -104,6 +104,15 @@ const PortfolioManagement = () => {
           /> */}
           {/* <PortfolioImg src={portfolio1} alt="portfolio"></PortfolioImg>
           <PortfolioImg src={portfolio2} alt="portfolio"></PortfolioImg> */}
+          <h1 style={{ margin: "50px 0" }}>
+            <i>
+              <b>Proof of Concept:</b>
+            </i>
+            <br></br> please use &nbsp;
+            <span style={{ backgroundColor: "yellow" }}>Chrome</span> on your{" "}
+            <span style={{ backgroundColor: "yellow" }}>laptop</span> browser
+            for it to work
+          </h1>
           <PortfolioImg src={portfolio3} alt="portfolio"></PortfolioImg>
           <TweetsContainer>
             <TwitterTweetEmbed
