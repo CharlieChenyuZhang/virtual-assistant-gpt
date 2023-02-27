@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import InteractiveUI from "./InteractiveUI";
 import logo from "../assets/chenyu-cali.png";
@@ -144,6 +144,10 @@ const RightFeatureContainer = styled.div`
 `;
 
 const LandingPage = () => {
+  useEffect(() => {
+    document.getElementsByTagName("title")[0].text = "Virtual Language Tutor";
+  });
+
   return (
     <div>
       <div className="container">

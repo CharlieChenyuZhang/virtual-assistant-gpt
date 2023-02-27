@@ -1,3 +1,4 @@
+import React, { useEffect } from "react";
 import logo from "./logo.svg";
 import "./App.css";
 import Dictaphone from "./components/Dictaphone";
@@ -6,6 +7,10 @@ import InteractiveUI from "./components/InteractiveUI";
 // import Test from "./components/Test";
 
 function App() {
+  useEffect(() => {
+    document.getElementsByTagName("title")[0].text = "ConverGPT";
+  });
+
   return (
     <div className="App">
       <header className="App-header">
