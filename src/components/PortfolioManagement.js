@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import InteractiveUI from "./InteractiveUI";
-import logo from "../assets/betafellowship.webp";
+import logo from "../assets/betafellowship.png";
 import portfolio1 from "../assets/portfolios/beta-p-1.png";
 import portfolio2 from "../assets/portfolios/beta-p-2.png";
 import portfolio3 from "../assets/portfolios/beta-p-3.png";
-import betaCompanies from "../assets/portfolios/beta-companies.webp";
+import betaCompanies from "../assets/portfolios/beta-companies.png";
 import TextField from "@mui/material/TextField";
 import Box from "@mui/material/Box";
 import AccountCircle from "@mui/icons-material/AccountCircle";
@@ -101,21 +101,50 @@ const PortfolioManagement = () => {
           {/* <PortfolioImg src={portfolio1} alt="portfolio"></PortfolioImg>
           <PortfolioImg src={portfolio2} alt="portfolio"></PortfolioImg> */}
           <PortfolioImg src={portfolio3} alt="portfolio"></PortfolioImg>
-
           <TweetsContainer>
             <TwitterTweetEmbed
               tweetId={"1499076368818049025"}
-              placeholder="loading..."
+              placeholder={
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "center",
+                    width: "100%",
+                  }}
+                >
+                  <CircularProgress />
+                </div>
+              }
               // options={{ width: "100%" }}
             />
             <TwitterTweetEmbed
               tweetId={"1602756721243435008"}
-
+              placeholder={
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "center",
+                    width: "100%",
+                  }}
+                >
+                  <CircularProgress />
+                </div>
+              }
               // options={{ width: "200px" }}
             />
             <TwitterTweetEmbed
               tweetId={"1618672173685821441"}
-
+              placeholder={
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "center",
+                    width: "100%",
+                  }}
+                >
+                  <CircularProgress />
+                </div>
+              }
               // options={{ width: "200px" }}
             />
             <TwitterTweetEmbed
