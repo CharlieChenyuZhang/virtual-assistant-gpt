@@ -110,6 +110,9 @@ const PortfolioManagement = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [showPortfolios, setShowPortfolios] = useState(false);
   const [wholeEmail, setWholeEmail] = useState("");
+  const [summaryPrompt, setSummaryPrompt] = useState(
+    `Fieldguide: raised 1 M dollars. \nChenyu Inc.: lauhcned the feature.`
+  );
   async function onSubmit() {
     try {
       try {
@@ -117,11 +120,15 @@ const PortfolioManagement = () => {
         setIsLoading(true);
         let completion = await openai.createCompletion({
           model: "text-davinci-003",
-          prompt: `Hi, I want to create a personalized reporting newslette for Beta Fellowship. The goal of the newsletter is to provide a weekly update for the venture capital on the portfolio startups. The name of the company is Beta Fellowship. We offer funding, mentorship and networking opportunities for Chinese and American audiences. Could you please suggest a body text for my newsletter with a separate paragraph for the placeholder where I can insert the weekly updates of the portfolio companies? For the placeholder text, please use [Insert company name and update here.] .Write in a friendly and welcoming tone. `,
+          prompt: `Hi, I want to create a personalized reporting newslette for Beta Fellowship. Beta Fellowship offer funding, mentorship and networking opportunities for Chinese and American audiences. The goal of the newsletter is to advertise what Beta Fellowship is, and provide a weekly update for the venture capital on the portfolio startups. Below is the weekly update of the portfolio companies:
+          ${summaryPrompt}
+          Could you please suggest a body text for my newsletter with a separate paragraph for the weekly updates of the portfolio companies? Write in a friendly and welcoming tone.`,
           temperature: 0.7,
           max_tokens: 3000,
         });
-        setWholeEmail(completion.data.choices[0].text);
+        setWholeEmail(
+          wholeEmail + "\n\n\n\n" + completion.data.choices[0].text
+        );
       } catch (error) {
         setIsLoading(false);
         // Consider adjusting the error handling logic for your use case
@@ -261,16 +268,28 @@ const PortfolioManagement = () => {
             generate weekly newsletter
           </Button>
 
+          <div style={{ marginTop: "50px" }}>
+            <TextField
+              id="outlined-multiline-static"
+              label="Portfolio Summary Prompt"
+              multiline
+              fullWidth
+              rows={4}
+              defaultValue="Default Value"
+              value={summaryPrompt}
+              onChange={(e) => {
+                setSummaryPrompt(e.target.value);
+              }}
+            />
+          </div>
           <div style={{ minHeight: "300px", marginBottom: "100px" }}>
-            {!isLoading ? (
-              <div
-                dangerouslySetInnerHTML={{
-                  __html: wholeEmail.replaceAll("\n", "<br />"),
-                }}
-              />
-            ) : (
-              <CircularProgress style={{ marginTop: "50px" }} />
-            )}
+            <div
+              dangerouslySetInnerHTML={{
+                __html: wholeEmail.replaceAll("\n", "<br />"),
+              }}
+            />
+
+            {isLoading && <CircularProgress style={{ marginTop: "50px" }} />}
           </div>
         </Header>
       </div>

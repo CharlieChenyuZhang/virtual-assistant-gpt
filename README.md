@@ -72,3 +72,12 @@ https://developer.twitter.com/en/docs/twitter-for-websites/embedded-tweets/guide
 # backend - WIP
 
 https://github.com/CharlieChenyuZhang/chatgpt-backend
+
+# Future Enhancement
+
+Traffice analysis
+
+- bounce rate tracking etc.
+- how much time they stay on (e.g. Amazon prefer a longer time. The longer time you stay, the more you purchase for Amazon.)
+
+# Track internally, how many story points completed and by how long
