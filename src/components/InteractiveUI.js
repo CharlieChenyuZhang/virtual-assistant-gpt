@@ -8,6 +8,8 @@ import Speech from "speak-tts";
 import avatar from "../avatar-ai.png";
 import listeningGif from "../assets/cat-listening.gif";
 import Character from "./Character";
+import styled from "styled-components";
+
 // TODO: introducing three states. Listening; Speaking; Idling
 
 const configuration = new Configuration({
@@ -90,6 +92,44 @@ const BetterUI = () => {
   const attemp2 =
     ". At the end, ask a follow up question when appropriate to keep the conversation going.";
 
+  const Button = styled.a`
+    margin-top: 1rem;
+    font-weight: 700;
+    font-size: 1.125rem;
+    border: solid 1px;
+    cursor: pointer;
+    padding: 0.25rem 0.75rem;
+    width: fit-content;
+
+    transition: 0.5s;
+    background-size: 200% auto;
+    color: white;
+    /* text-shadow: 0px 0px 10px rgba(0,0,0,0.2);*/
+    box-shadow: 0 0 20px #eee;
+    border-radius: 10px;
+    pointer-events: ${(props) => (props.disabled ? "none" : "auto")};
+
+    background-image: ${(props) =>
+      props.disabled
+        ? `linear-gradient(
+      to right,
+      lightgrey 0%,
+      grey 51%,
+      grey 100%
+    )`
+        : `linear-gradient(
+    to right,
+    #f6d365 0%,
+    #fda085 51%,
+    #f6d365 100%
+  )`};
+
+    :hover {
+      background-position: right center;
+      text-decoration: none;
+    }
+  `;
+
   async function onSubmit() {
     try {
       try {
@@ -160,7 +200,7 @@ const BetterUI = () => {
     if (STATE_USER_SPEAKING) {
       statusText = "go ahead, I am listening...";
     } else if (STATE_AI_SPEAKING) {
-      statusText = "ChenYu's speaking";
+      statusText = "ChenYu's speaking...";
     } else if (STATE_NOONE_SPEAKING_AI_THINKING) {
       statusText = "One second, let me think about it...";
     }
@@ -169,9 +209,16 @@ const BetterUI = () => {
       <p
         style={{
           color: "black",
+          backgroundColor: "inherit",
         }}
       >
-        <mark>{statusText}</mark>
+        <mark
+          style={{
+            backgroundColor: "inherit",
+          }}
+        >
+          {statusText}
+        </mark>
       </p>
     );
   };
@@ -180,7 +227,7 @@ const BetterUI = () => {
     <div>
       {/* <p>Microphone: {listening ? "on" : "off"}</p> */}
       {/* <span>push to talk: </span> */}
-      <div>
+      <div style={{ display: "flex", justifyContent: "center" }}>
         <Character
           chatGptRes={chatGptRes}
           listening={listening}
@@ -188,15 +235,15 @@ const BetterUI = () => {
         ></Character>
       </div>
       {!convoStart ? (
-        <button
+        <Button
           id="start-btn"
           onClick={userStartConvo}
           style={{ hover: "cursor" }}
         >
-          click me to start
-        </button>
+          click me to talk
+        </Button>
       ) : (
-        <button
+        <Button
           onClick={() => {
             speech?.cancel();
             resetEverything();
@@ -207,16 +254,14 @@ const BetterUI = () => {
           }}
         >
           end the conversation
-        </button>
+        </Button>
       )}
 
       {displayStatusText()}
       <hr></hr>
 
-      <p style={{ maxWidth: "200px", maxWidth: "400px", margin: "auto" }}>
-        {transcript}
-      </p>
-      <p style={{ color: "orange", maxWidth: "400px", margin: "auto" }}>
+      <p style={{ width: "80%", margin: "auto" }}>{transcript}</p>
+      <p style={{ color: "orange", width: "80%", margin: "auto" }}>
         {chatGptRes}
       </p>
     </div>
