@@ -13,7 +13,6 @@ const WaitListContainer = styled.div`
   flex-direction: column;
   padding-top: 7rem;
   padding-bottom: 8rem;
-  /* justify-content: center; */
   text-align: left;
   align-items: center;
 `;
@@ -25,20 +24,8 @@ const Header = styled.div`
 const Logo = styled.img`
   width: 6rem;
   height: 4rem;
-  /* position: fixed; */
 `;
 
-const H1 = styled.h1`
-  font-size: 3.75rem;
-  line-height: 1;
-  font-weight: 700;
-`;
-const SecondPhrase = styled.p`
-  margin-top: 1.5rem;
-  /* max-width: 28rem; */
-  font-size: 1.125rem;
-  line-height: 1.75rem;
-`;
 const Button = styled.a`
   margin-top: 1rem;
   font-weight: 700;
@@ -51,7 +38,6 @@ const Button = styled.a`
   transition: 0.5s;
   background-size: 200% auto;
   color: white;
-  /* text-shadow: 0px 0px 10px rgba(0,0,0,0.2);*/
   box-shadow: 0 0 20px #eee;
   border-radius: 10px;
 
@@ -82,15 +68,6 @@ const EmailCompose = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [senderName, setSenderName] = useState("");
   const [supplierName, setSupplierName] = useState("");
-  const [argument1, setArgument1] = useState(
-    "We have researched comparable suppliers and offerings. We are wondering whether we can get a 40% discount?"
-  );
-  const [argument2, setArgument2] = useState(
-    "If we buy more than 10 licenses, can we get a further volume discount?"
-  );
-  const [argument3, setArgument3] = useState(
-    "Can we have a payment term of 90 days?"
-  );
 
   const [wholeEmail, setWholeEmail] = useState("");
 
@@ -131,7 +108,7 @@ const EmailCompose = () => {
         setIsLoading(true);
         let completion = await openai.createCompletion({
           model: "text-davinci-003",
-          prompt: `Help me polish the following email. Please use a polite and professional tone throughout the email to argue for a better deal.  Keep the number the same. Follow the email structure with HTML code to showcase line break. ${template}`, // FIXME:
+          prompt: `Help me polish the following email. Please use a polite and professional tone throughout the email to argue for a better deal.  Keep the number the same. Follow the email structure with HTML code to showcase line break. ${template}`,
           temperature: 0.7,
           max_tokens: 2000,
         });
