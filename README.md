@@ -1,7 +1,3 @@
-# TODO
-
-purchase chenyu.ai (currently available for 150 CAD) or chenyu.com or chenyu.cn domain
-
 # todos / feature
 
 - have a language toggle at the top righr corner to toggle it to 简体中文
