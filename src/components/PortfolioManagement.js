@@ -376,7 +376,7 @@ const PortfolioManagement = () => {
             }}
             disabled={isLoading || !summaryPrompt ? true : false}
           >
-            generate weekly newsletter
+            generate a newsletter
           </Button>
 
           <div

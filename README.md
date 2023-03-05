@@ -90,6 +90,7 @@ Twitter APIs:
 - Search tweets to return the tweets in the past 7 days - cap at 100 tweets per request
 - TODO: need to use Tweet Counts API to count the number of tweets returns so we can decide how many times we should call the API to fetch everything
 - currently, we only track the tweets from sender, in the future, we can track mentions
+- TODO: move the twitter API call and OpenAI API call to the backend so it doesn't reveal Bearer token and can handle heavier work load
 
 - user have the option to set the daily digest or the weekly digest or the digest of the past 7 days. I can control it by passing in the start_time and end_time
 
