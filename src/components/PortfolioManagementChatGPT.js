@@ -117,10 +117,7 @@ const PortfolioManagement = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [showPortfolios, setShowPortfolios] = useState(false);
   const [wholeEmail, setWholeEmail] = useState("");
-  const [summaryPrompt, setSummaryPrompt] =
-    useState(`Instacart tweeted about their activities on Sundays, celebrated National Cold Cuts Day and National Banana Cream Pie Day, and used AI to write their Friday tweets. They also mentioned their dislike for the pronunciation of "bologna".
-
-  Rippling offers checklists for hiring, paying, and classifying workers, and hosts a free webinar on hiring freelancers. They also announce their integration with Comprehensive for compensation reviews.`); // FIXME: update the summaryPrompt once I fetch the data from twitter
+  const [summaryPrompt, setSummaryPrompt] = useState(""); // FIXME: update the summaryPrompt once I fetch the data from twitter
 
   const callOpenAI = async (prompt) => {
     const completion = await openai.createChatCompletion({
@@ -339,18 +336,17 @@ const PortfolioManagement = () => {
           <Button
             disabled={isLoading ? true : false}
             onClick={() => {
-              // getRecentTweets()
-              //   .then(async (res) => {
-              //     const NUMBER_OF_PICKS = 5;
-              //     const summary = await summarize(
-              //       pick(sort(res), NUMBER_OF_PICKS)
-              //     );
-              //     setSummaryPrompt(summary);
-              //   })
-              //   .catch((err) => {
-              //     // FIXME: display error message and log it
-              //   });
-              alert("only works in localhost, will fix this soon");
+              getRecentTweets()
+                .then(async (res) => {
+                  const NUMBER_OF_PICKS = 5;
+                  const summary = await summarize(
+                    pick(sort(res), NUMBER_OF_PICKS)
+                  );
+                  setSummaryPrompt(summary);
+                })
+                .catch((err) => {
+                  // FIXME: display error message and log it
+                });
             }}
           >
             generate summaries
