@@ -446,18 +446,20 @@ const PortfolioManagement = () => {
           <Step>Step 2:</Step>
           <Button
             disabled={isLoading ? true : false}
-            onClick={() => {
-              getRecentTweets()
-                .then(async (res) => {
-                  const NUMBER_OF_PICKS = 5;
-                  const summary = await summarize(
-                    pick(sort(res), NUMBER_OF_PICKS)
-                  );
-                  setSummaryPrompt(summary);
-                })
-                .catch((err) => {
-                  // FIXME: display error message and log it
-                });
+            onClick={async () => {
+              // getRecentTweets()
+              //   .then(async (res) => {
+              //     const NUMBER_OF_PICKS = 5;
+              //     const summary = await summarize(
+              //       pick(sort(res), NUMBER_OF_PICKS)
+              //     );
+              //     setSummaryPrompt(summary);
+              //   })
+              //   .catch((err) => {
+              //     // FIXME: display error message and log it
+              //   });
+              const summary = await summarize();
+              setSummaryPrompt(summary);
             }}
           >
             generate summaries
