@@ -332,11 +332,11 @@ const PortfolioManagement = () => {
           </h1>
           <PortfolioImg src={betaCompanies} alt="portfolio"></PortfolioImg> */}
           {/* <PortfolioImg src={betaPortfolios} alt="portfolio"></PortfolioImg> */}
-          <div style={{ marginTop: "30px" }}>
+          {/* <div style={{ marginTop: "30px" }}>
             <h1>
               <mark>Currently Under Maintenance</mark>
             </h1>
-          </div>
+          </div> */}
           <div style={{ marginTop: "50px" }}>
             <Step>
               Step 1: choose portfolios (a comma separated list, no space)
