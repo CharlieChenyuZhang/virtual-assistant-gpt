@@ -125,8 +125,10 @@ const PortfolioManagement = () => {
   const [isTwitterLoading, setIsTwitterLoading] = useState(false);
   const [isSummarizationLoading, setIsSummarizationLoading] = useState(false);
   const [pickedTweets, setPickedTweets] = useState({});
-  const [portfolios, setPortfolios] = useState("Instacart,Rippling");
-  const [showPortfolios, setShowPortfolios] = useState(false);
+  const [portfolios, setPortfolios] = useState(
+    "Instacart,Rippling,checkr,ironclad_inc,boomaero,GrubMarket,MuxHQ,Mashgin,Astranis,BillionToOneInc,RescaleInc,SubstackInc,mezmodata,workramp,notablelabs,MoonshotTeam"
+  );
+  // const [showPortfolios, setShowPortfolios] = useState(false);
   const [wholeEmail, setWholeEmail] = useState("");
   const [summaryPrompt, setSummaryPrompt] = useState(""); // FIXME: update the summaryPrompt once I fetch the data from twitter
   const [selectedTweets, setSelectedTweets] = useState("");
@@ -250,7 +252,7 @@ const PortfolioManagement = () => {
             </Button>
           </div> */}
           {/* <PortfolioImg src={portfolio3} alt="portfolio"></PortfolioImg> */}
-          {showPortfolios && (
+          {/* {showPortfolios && (
             <TweetsContainer>
               <TwitterTweetEmbed
                 tweetId={"1499076368818049025"}
@@ -323,7 +325,7 @@ const PortfolioManagement = () => {
                 // options={{ width: "200px" }}
               />
             </TweetsContainer>
-          )}
+          )} */}
 
           {/* <h1 style={{ textAlign: "center", marginTop: "80px" }}>
             Companies Where Beta Fellows Are Coming From
@@ -367,6 +369,7 @@ const PortfolioManagement = () => {
                     sort(res, sortingCriteria),
                     NUMBER_OF_PICKS
                   );
+                  console.log("picked", picked);
                   setPickedTweets(picked);
                   setSelectedTweets(displaySelectedTweets(picked));
                   setIsTwitterLoading(false);
@@ -455,7 +458,7 @@ const PortfolioManagement = () => {
               ) : (
                 <TextField
                   id="outlined-multiline-static"
-                  label="Selected Tweets"
+                  label="Selected Tweets (scroll down)"
                   disabled
                   multiline
                   fullWidth

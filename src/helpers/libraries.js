@@ -68,8 +68,8 @@ export const displaySelectedTweets = (input) => {
     result += "@" + company;
     result += "\n";
     input[company].forEach((element, idx) => {
-      result += "Tweet " + (idx + 1) + ": " + element.text;
-      result += "\n";
+      result += "Tweet " + (idx + 1) + ": " + element.text.replaceAll("\n", "");
+      result += "\n\n";
     });
     result += "\n";
   }

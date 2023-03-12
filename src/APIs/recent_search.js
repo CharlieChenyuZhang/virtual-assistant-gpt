@@ -14,7 +14,7 @@ const endpointUrl =
 
 const instance = axios.create({
   baseURL: endpointUrl,
-  timeout: 1000,
+  timeout: 5000,
 });
 
 // TODO: note the logic has been moved to repo https://github.com/CharlieChenyuZhang/chatgpt-backend
