@@ -25,7 +25,14 @@ import {
   TwitterOnAirButton,
 } from "react-twitter-embed";
 import getRecentTweets from "../APIs/recent_search";
-import { sort, pick, grabTwitterhandles } from "../helpers/libraries";
+import { sort, pick, displaySelectedTweets } from "../helpers/libraries";
+
+import FormLabel from "@mui/material/FormLabel";
+import FormControl from "@mui/material/FormControl";
+import FormGroup from "@mui/material/FormGroup";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import FormHelperText from "@mui/material/FormHelperText";
+import Checkbox from "@mui/material/Checkbox";
 
 const Header = styled.div`
   margin-top: 3rem;
@@ -92,15 +99,8 @@ const Button = styled.a`
   }
 `;
 
-const EmailContainer = styled.div`
-  width: 100%;
+const PickTweetContainer = styled.div`
   display: flex;
-  flex-direction: column;
-  padding-top: 7rem;
-  padding-bottom: 8rem;
-  /* justify-content: center; */
-  text-align: left;
-  align-items: center;
 `;
 
 const Step = styled.span`
@@ -114,11 +114,31 @@ const configuration = new Configuration({
 const openai = new OpenAIApi(configuration);
 
 const PortfolioManagement = () => {
+  const [sortingCriteria, setSortingCriteria] = useState({
+    impression_count: false,
+    like_count: true,
+    quote_count: false,
+    reply_count: false,
+    retweet_count: false,
+  });
   const [isLoading, setIsLoading] = useState(false);
+  const [isTwitterLoading, setIsTwitterLoading] = useState(false);
+  const [isSummarizationLoading, setIsSummarizationLoading] = useState(false);
+  const [pickedTweets, setPickedTweets] = useState({});
   const [portfolios, setPortfolios] = useState("Instacart,Rippling");
   const [showPortfolios, setShowPortfolios] = useState(false);
   const [wholeEmail, setWholeEmail] = useState("");
   const [summaryPrompt, setSummaryPrompt] = useState(""); // FIXME: update the summaryPrompt once I fetch the data from twitter
+  const [selectedTweets, setSelectedTweets] = useState("");
+
+  const handleChange = (event) => {
+    setSortingCriteria({
+      ...sortingCriteria,
+      [event.target.name]: event.target.checked,
+    });
+  };
+
+  const error = Object.values(sortingCriteria).filter((v) => v).length < 1;
 
   const callOpenAI = async (prompt) => {
     const completion = await openai.createChatCompletion({
@@ -160,21 +180,17 @@ const PortfolioManagement = () => {
   // input: {Instacart: [], Rippling: []}
   // output: Instacart has tweeted ... Rippling has tweeted ...
   async function summarize(input) {
-    console.log("!!! summarize input", input);
     let onelineSummary = "";
 
     const composeParagraph = (companyName) => {
       let oneliner = input[companyName].reduce((prev, curr) => {
         return prev + " " + curr.text;
       }, "");
-      console.log(
-        "composeParagraph",
-        `${companyName} has tweeted the followings. ${oneliner}`
-      );
+
       return `${companyName} has tweeted the followings. ${oneliner}`;
     };
 
-    setIsLoading(true);
+    setIsSummarizationLoading(true);
     for (const companyName in input) {
       try {
         try {
@@ -203,7 +219,7 @@ const PortfolioManagement = () => {
       }
     }
 
-    setIsLoading(false);
+    setIsSummarizationLoading(false);
     return onelineSummary;
   }
 
@@ -320,7 +336,9 @@ const PortfolioManagement = () => {
             </h1>
           </div>
           <div style={{ marginTop: "50px" }}>
-            <Step>Step 1: choose portfolios</Step>
+            <Step>
+              Step 1: choose portfolios (a comma separated list, no space)
+            </Step>
           </div>
           <div style={{ margin: "50px 0" }}>
             <TextField
@@ -337,45 +355,157 @@ const PortfolioManagement = () => {
             />
           </div>
 
-          <Step>Step 2:</Step>
+          <Step>Step 2: </Step>
           <Button
             disabled={isLoading ? true : false}
             onClick={async () => {
+              setIsTwitterLoading(true);
               getRecentTweets(portfolios.split(","))
                 .then(async (res) => {
                   const NUMBER_OF_PICKS = 5;
-                  const summary = await summarize(
-                    pick(sort(res), NUMBER_OF_PICKS)
+                  const picked = pick(
+                    sort(res, sortingCriteria),
+                    NUMBER_OF_PICKS
                   );
-                  setSummaryPrompt(summary);
+                  setPickedTweets(picked);
+                  setSelectedTweets(displaySelectedTweets(picked));
+                  setIsTwitterLoading(false);
                 })
                 .catch((err) => {
                   // FIXME: display error message and log it
+                  setIsTwitterLoading(false);
                 });
               // const summary = await summarize();
               // setSummaryPrompt(summary);
             }}
           >
+            pick 5 tweets
+          </Button>
+
+          <PickTweetContainer>
+            <Box sx={{ display: "flex" }}>
+              <FormControl
+                required
+                error={error}
+                component="fieldset"
+                sx={{ m: 3, marginLeft: "0px" }}
+                variant="standard"
+              >
+                <FormLabel component="legend">
+                  Pick at least one criteria
+                </FormLabel>
+                <FormGroup>
+                  <FormControlLabel
+                    control={
+                      <Checkbox
+                        checked={sortingCriteria.like_count}
+                        onChange={handleChange}
+                        name="like_count"
+                      />
+                    }
+                    label="like count"
+                  />
+                  <FormControlLabel
+                    control={
+                      <Checkbox
+                        checked={sortingCriteria.impression_count}
+                        onChange={handleChange}
+                        name="impression_count"
+                      />
+                    }
+                    label="impression count"
+                  />
+                  <FormControlLabel
+                    control={
+                      <Checkbox
+                        checked={sortingCriteria.quote_count}
+                        onChange={handleChange}
+                        name="quote_count"
+                      />
+                    }
+                    label="quote count"
+                  />
+                  <FormControlLabel
+                    control={
+                      <Checkbox
+                        checked={sortingCriteria.reply_count}
+                        onChange={handleChange}
+                        name="reply_count"
+                      />
+                    }
+                    label="reply count"
+                  />
+                  <FormControlLabel
+                    control={
+                      <Checkbox
+                        checked={sortingCriteria.retweet_count}
+                        onChange={handleChange}
+                        name="retweet_count"
+                      />
+                    }
+                    label="retweet count"
+                  />
+                </FormGroup>
+                {/* <FormHelperText>You haven't picked a criteria yet</FormHelperText> */}
+              </FormControl>
+            </Box>
+            <div style={{ marginTop: "50px", flexGrow: 1 }}>
+              {isTwitterLoading ? (
+                <CircularProgress style={{ marginLeft: "30px" }} />
+              ) : (
+                <TextField
+                  id="outlined-multiline-static"
+                  label="Selected Tweets"
+                  disabled
+                  multiline
+                  fullWidth
+                  rows={8}
+                  defaultValue="Default Value"
+                  value={selectedTweets}
+                  onChange={(e) => {
+                    alert("todo");
+                  }}
+                />
+              )}
+            </div>
+          </PickTweetContainer>
+
+          <br />
+          <br />
+          <br />
+
+          <Step>Step 3:</Step>
+          <Button
+            disabled={
+              isSummarizationLoading || Object.keys(pickedTweets).length === 0
+                ? true
+                : false
+            }
+            onClick={async () => {
+              const summary = await summarize(pickedTweets);
+              setSummaryPrompt(summary);
+            }}
+          >
             generate summaries
           </Button>
 
-          <div style={{ margin: "50px 0" }}>
-            Top 5 Picks based on "number of likes"
-          </div>
-
-          <div style={{ margin: "50px 0" }}>
-            <TextField
-              id="outlined-multiline-static"
-              label="AI Generated Portfolios Update"
-              multiline
-              fullWidth
-              rows={8}
-              defaultValue="Default Value"
-              value={summaryPrompt}
-              onChange={(e) => {
-                setSummaryPrompt(e.target.value);
-              }}
-            />
+          <div style={{ margin: "50px 0", minHeight: "220px" }}>
+            {isSummarizationLoading ? (
+              <CircularProgress style={{ marginLeft: "30px" }} />
+            ) : (
+              <TextField
+                id="outlined-multiline-static"
+                label="AI Generated Portfolios Update"
+                multiline
+                fullWidth
+                rows={8}
+                defaultValue="Default Value"
+                value={summaryPrompt}
+                onChange={(e) => {
+                  setSummaryPrompt(e.target.value);
+                }}
+              />
+            )}
           </div>
 
           <Step>Step 3:</Step>

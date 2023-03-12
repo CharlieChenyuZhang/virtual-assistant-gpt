@@ -6,11 +6,10 @@ import axios from "axios";
 // The code below sets the bearer token from your environment variables
 // To set environment variables on macOS or Linux, run the export command below from the terminal:
 // export BEARER_TOKEN='YOUR-TOKEN'
-console.log("NODE_ENV", process.env.NODE_ENV);
 const endpointUrl =
   process.env.NODE_ENV === "development"
     ? ""
-    : "https://j9xb399hhb.us-east-1.awsapprunner.com"; // FIXME: comment me back
+    : "https://j9xb399hhb.us-east-1.awsapprunner.com";
 // const endpointUrl = "";
 
 const instance = axios.create({
@@ -29,9 +28,6 @@ export default async function getRecentTweets(portfolios) {
 
   try {
     const res = await instance.get(`/twitter?portfolios=${portfolios}`);
-    const res2 = await instance.get(`/`);
-    console.log("res1", res);
-    console.log("res2", res2);
     if (res?.status === 200) {
       return res.data;
     } else {
