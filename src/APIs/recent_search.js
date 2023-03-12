@@ -26,7 +26,6 @@ export default async function getRecentTweets(portfolios) {
   try {
     const res = await instance.get(`/?portfolios=${portfolios}`);
     if (res?.status === 200) {
-      console.log("res.data", res.data);
       return res.data;
     } else {
       throw new Error("Twitter returns a non 200 code", res);

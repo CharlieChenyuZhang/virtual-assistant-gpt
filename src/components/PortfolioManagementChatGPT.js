@@ -360,9 +360,13 @@ const PortfolioManagement = () => {
           </Button>
 
           <div style={{ margin: "50px 0" }}>
+            Top 5 Picks based on "number of likes"
+          </div>
+
+          <div style={{ margin: "50px 0" }}>
             <TextField
               id="outlined-multiline-static"
-              label="AI Generated Portfoils Update"
+              label="AI Generated Portfolios Update"
               multiline
               fullWidth
               rows={8}
