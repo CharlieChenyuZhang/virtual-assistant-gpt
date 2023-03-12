@@ -1,5 +1,4 @@
 import axios from "axios";
-import { portfolios } from "../helpers/constants";
 
 // Search for Tweets within the past seven days
 // https://developer.twitter.com/en/docs/twitter-api/tweets/search/quick-start/recent-search
@@ -24,7 +23,7 @@ const instance = axios.create({
   params,
 });
 
-export default async function getRecentTweets() {
+export default async function getRecentTweets(portfolios) {
   // Edit query parameters below
   // specify a search query, and any additional fields that are required
   // by default, only the Tweet ID and text fields are returned
@@ -34,13 +33,13 @@ export default async function getRecentTweets() {
 
   let result = {};
 
-  for (const key in portfolios) {
+  for (const portfolio of portfolios) {
     try {
-      instance.defaults.params.query = `from:${portfolios[key].twitter} -is:retweet -is:reply`;
+      instance.defaults.params.query = `from:${portfolio} -is:retweet -is:reply`;
       const res = await instance.get("/");
       if (res?.status === 200) {
         console.log("res.data", res.data);
-        result[key] = res?.data?.data;
+        result[portfolio] = res?.data?.data;
       } else {
         throw new Error("Twitter returns a non 200 code", res);
       }

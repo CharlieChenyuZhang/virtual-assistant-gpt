@@ -1,4 +1,4 @@
-import { portfolios } from "../helpers/constants";
+// import { portfolios } from "../helpers/constants";
 
 // input: {Instacart: [], Rippling: []}
 // output: {Instacart: [], Rippling: []}
@@ -19,10 +19,10 @@ export const pick = (input, NUMBER_OF_PICKS) => {
   return result;
 };
 
-export const grabTwitterhandles = () => {
+export const grabTwitterhandles = (portfolios) => {
   let result = "";
-  for (const key in portfolios) {
-    result += portfolios[key].twitter + ",";
+  for (const portfolio in portfolios) {
+    result += portfolio + ",";
   }
   return result.slice(0, -1);
 };
