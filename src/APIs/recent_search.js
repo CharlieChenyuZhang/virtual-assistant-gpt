@@ -7,7 +7,7 @@ import axios from "axios";
 // To set environment variables on macOS or Linux, run the export command below from the terminal:
 // export BEARER_TOKEN='YOUR-TOKEN'
 
-const endpointUrl = "https://j9xb399hhb.us-east-1.awsapprunner.com";
+const endpointUrl = "/twitter";
 
 const instance = axios.create({
   baseURL: endpointUrl,
@@ -23,12 +23,11 @@ export default async function getRecentTweets(portfolios) {
   // TODO: loop through twitterHandles and create a new data structure to store the result
   // {twitterHand1: [], twitterHand2: []}
 
-  let result = {};
-
   try {
     const res = await instance.get(`/?portfolios=${portfolios}`);
     if (res?.status === 200) {
       console.log("res.data", res.data);
+      return res.data;
     } else {
       throw new Error("Twitter returns a non 200 code", res);
     }
@@ -36,6 +35,4 @@ export default async function getRecentTweets(portfolios) {
     // TODO: add logging here
     return { error: "something went wrong with Twitter APIs" };
   }
-
-  return result;
 }
