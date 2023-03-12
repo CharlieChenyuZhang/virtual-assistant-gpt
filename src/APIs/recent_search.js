@@ -7,7 +7,7 @@ import axios from "axios";
 // To set environment variables on macOS or Linux, run the export command below from the terminal:
 // export BEARER_TOKEN='YOUR-TOKEN'
 
-const endpointUrl = "/twitter";
+const endpointUrl = "";
 
 const instance = axios.create({
   baseURL: endpointUrl,
@@ -24,7 +24,10 @@ export default async function getRecentTweets(portfolios) {
   // {twitterHand1: [], twitterHand2: []}
 
   try {
-    const res = await instance.get(`/?portfolios=${portfolios}`);
+    const res = await instance.get(`/twitter?portfolios=${portfolios}`);
+    const res2 = await instance.get(`/health`);
+    console.log("res1", res);
+    console.log("res2", res2);
     if (res?.status === 200) {
       return res.data;
     } else {
