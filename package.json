@@ -54,6 +54,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "proxy": "https://j9xb399hhb.us-east-1.awsapprunner.com"
+  }
 }
