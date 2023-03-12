@@ -7,8 +7,8 @@ import axios from "axios";
 // To set environment variables on macOS or Linux, run the export command below from the terminal:
 // export BEARER_TOKEN='YOUR-TOKEN'
 
-const endpointUrl = "https://j9xb399hhb.us-east-1.awsapprunner.com"; // FIXME: comment me back
-// const endpointUrl = "http://0.0.0.0:8080";
+const endpointUrl = ""; // FIXME: comment me back
+// const endpointUrl = "";
 
 const instance = axios.create({
   baseURL: endpointUrl,
