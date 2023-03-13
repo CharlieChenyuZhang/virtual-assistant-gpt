@@ -395,7 +395,7 @@ const PortfolioManagement = () => {
               // setSummaryPrompt(summary);
             }}
           >
-            pick top 5 tweets
+            pick top 5 tweets (in the past 7 days)
           </Button>
 
           <PickTweetContainer>

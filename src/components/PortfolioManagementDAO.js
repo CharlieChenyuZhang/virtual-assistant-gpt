@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import InteractiveUI from "./InteractiveUI";
-import logo from "../assets/builderDAO.png";
+import logo from "../assets/builderDAO.jpeg";
 import portfolio1 from "../assets/portfolios/beta-p-1.png";
 import portfolio2 from "../assets/portfolios/beta-p-2.png";
 import portfolio3 from "../assets/portfolios/beta-p-3.png";
@@ -101,6 +101,19 @@ const Button = styled.a`
 
 const PickTweetContainer = styled.div`
   display: flex;
+
+  @media only screen and (max-width: 992px) {
+    flex-direction: column;
+  }
+`;
+
+const TweetsContentContainer = styled.div`
+  margin-top: 50px;
+  flex-grow: 1;
+
+  @media only screen and (max-width: 992px) {
+    margin-top: 0;
+  }
 `;
 
 const Step = styled.span`
@@ -125,9 +138,7 @@ const PortfolioManagement = () => {
   const [isTwitterLoading, setIsTwitterLoading] = useState(false);
   const [isSummarizationLoading, setIsSummarizationLoading] = useState(false);
   const [pickedTweets, setPickedTweets] = useState({});
-  const [portfolios, setPortfolios] = useState(
-    "Instacart,Rippling,checkr,ironclad_inc,boomaero,GrubMarket,MuxHQ,Mashgin,Astranis,BillionToOneInc,RescaleInc,SubstackInc,mezmodata,workramp,notablelabs,MoonshotTeam"
-  );
+  const [portfolios, setPortfolios] = useState("BuidlerDAO");
   // const [showPortfolios, setShowPortfolios] = useState(false);
   const [wholeEmail, setWholeEmail] = useState("");
   const [summaryPrompt, setSummaryPrompt] = useState(""); // FIXME: update the summaryPrompt once I fetch the data from twitter
@@ -348,7 +359,7 @@ const PortfolioManagement = () => {
               label="Portfolios Twitter Handles"
               multiline
               fullWidth
-              rows={2}
+              rows={4}
               defaultValue="Default Value"
               value={portfolios}
               onChange={(e) => {
@@ -382,7 +393,7 @@ const PortfolioManagement = () => {
               // setSummaryPrompt(summary);
             }}
           >
-            pick 5 tweets
+            pick top 5 tweets
           </Button>
 
           <PickTweetContainer>
@@ -395,7 +406,7 @@ const PortfolioManagement = () => {
                 variant="standard"
               >
                 <FormLabel component="legend">
-                  Pick at least one criteria
+                  choose at least one ranking criteria
                 </FormLabel>
                 <FormGroup>
                   <FormControlLabel
@@ -452,7 +463,7 @@ const PortfolioManagement = () => {
                 {/* <FormHelperText>You haven't picked a criteria yet</FormHelperText> */}
               </FormControl>
             </Box>
-            <div style={{ marginTop: "50px", flexGrow: 1 }}>
+            <TweetsContentContainer>
               {isTwitterLoading ? (
                 <CircularProgress style={{ marginLeft: "30px" }} />
               ) : (
@@ -470,7 +481,7 @@ const PortfolioManagement = () => {
                   }}
                 />
               )}
-            </div>
+            </TweetsContentContainer>
           </PickTweetContainer>
 
           <br />
