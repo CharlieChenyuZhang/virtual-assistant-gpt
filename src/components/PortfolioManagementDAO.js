@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import InteractiveUI from "./InteractiveUI";
-import logo from "../assets/betafellowship.png";
+import logo from "../assets/builderDAO.png";
 import portfolio1 from "../assets/portfolios/beta-p-1.png";
 import portfolio2 from "../assets/portfolios/beta-p-2.png";
 import portfolio3 from "../assets/portfolios/beta-p-3.png";
@@ -39,8 +39,8 @@ const Header = styled.div`
 `;
 
 const Logo = styled.img`
-  width: 12rem;
-  height: 4.5rem;
+  width: 10rem;
+  height: 10rem;
   /* position: fixed; */
 `;
 
@@ -101,19 +101,6 @@ const Button = styled.a`
 
 const PickTweetContainer = styled.div`
   display: flex;
-
-  @media only screen and (max-width: 992px) {
-    flex-direction: column;
-  }
-`;
-
-const TweetsContentContainer = styled.div`
-  margin-top: 50px;
-  flex-grow: 1;
-
-  @media only screen and (max-width: 992px) {
-    margin-top: 0;
-  }
 `;
 
 const Step = styled.span`
@@ -361,7 +348,7 @@ const PortfolioManagement = () => {
               label="Portfolios Twitter Handles"
               multiline
               fullWidth
-              rows={4}
+              rows={2}
               defaultValue="Default Value"
               value={portfolios}
               onChange={(e) => {
@@ -395,7 +382,7 @@ const PortfolioManagement = () => {
               // setSummaryPrompt(summary);
             }}
           >
-            pick top 5 tweets
+            pick 5 tweets
           </Button>
 
           <PickTweetContainer>
@@ -408,7 +395,7 @@ const PortfolioManagement = () => {
                 variant="standard"
               >
                 <FormLabel component="legend">
-                  choose at least one ranking criteria
+                  Pick at least one criteria
                 </FormLabel>
                 <FormGroup>
                   <FormControlLabel
@@ -465,7 +452,7 @@ const PortfolioManagement = () => {
                 {/* <FormHelperText>You haven't picked a criteria yet</FormHelperText> */}
               </FormControl>
             </Box>
-            <TweetsContentContainer>
+            <div style={{ marginTop: "50px", flexGrow: 1 }}>
               {isTwitterLoading ? (
                 <CircularProgress style={{ marginLeft: "30px" }} />
               ) : (
@@ -483,7 +470,7 @@ const PortfolioManagement = () => {
                   }}
                 />
               )}
-            </TweetsContentContainer>
+            </div>
           </PickTweetContainer>
 
           <br />

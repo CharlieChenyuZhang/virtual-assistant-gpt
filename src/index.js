@@ -7,6 +7,7 @@ import LandingPage from "./components/LandingPage";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Huggingface from "./Huggingface";
 import PortfolioManagementChatGPT from "./components/PortfolioManagementChatGPT";
+import PortfolioManagementDAO from "./components/PortfolioManagementDAO";
 import EmailCompose from "./components/EmailCompose";
 // import * as dotenv from "dotenv"; // see https://github.com/motdotla/dotenv#how-do-i-use-dotenv-with-import
 // dotenv.config();
@@ -20,6 +21,10 @@ const router = createBrowserRouter([
   {
     path: "/beta-fellowship",
     element: <PortfolioManagementChatGPT />,
+  },
+  {
+    path: "/dao",
+    element: <PortfolioManagementDAO />,
   },
   // deployed the email composing feature for trusli
   {
