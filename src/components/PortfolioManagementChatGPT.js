@@ -524,7 +524,7 @@ const PortfolioManagement = () => {
             )}
           </div>
 
-          <Step>Step 3:</Step>
+          <Step>Step 4:</Step>
           <Button
             onClick={async () => {
               await generateEmail();

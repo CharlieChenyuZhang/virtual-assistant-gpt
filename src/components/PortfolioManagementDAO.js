@@ -237,7 +237,7 @@ const PortfolioManagement = () => {
   }
 
   useEffect(() => {
-    document.getElementsByTagName("title")[0].text = "Beta Fellowship";
+    document.getElementsByTagName("title")[0].text = "Builder DAO";
   });
 
   return (
