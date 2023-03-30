@@ -40,7 +40,6 @@ speech recognition - https://github.com/JamesBrill/react-speech-recognition/blob
 # fixed bugs:
 
 - add the indicatoin whether it's thinking, talking or listening (meme mode)
--
 
 # future features:
 
