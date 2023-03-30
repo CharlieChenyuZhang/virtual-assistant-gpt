@@ -58,11 +58,6 @@ version 3: `InteractiveUI.js`
 ![Screenshot 2023-02-06 at 3 17 39 PM](https://user-images.githubusercontent.com/22360911/217076113-4a041f37-3a25-402e-8d34-0d0831e04694.png)
 This version ask a follow up question and start listening to users again to engage the conversation.
 
-# CONFIDENTIAL - NDA signed
-
-Trusli Pourcurment Documentation
-https://docs.google.com/document/d/1LyIkLM6NeVX2qAccUZHd_1AKzM2uySX6pEamo6ix_9I/edit
-
 # Twitter dependency url
 
 https://github.com/saurabhnemade/react-twitter-embed
