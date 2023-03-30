@@ -16,7 +16,8 @@ npm ci && npm run start
 
 # What you will find in this repo
 
-1. landing page (route / )
+1. landing page (route / ) <img width="1318" alt="landing" src="https://user-images.githubusercontent.com/22360911/228929898-e84fc686-de58-462e-b6a0-eb760fe3fd73.png">
+
 2. A few experiments
    - experiment 1 - ChatGPT + Conversational Layer (route /gpt)
    - experiment 2 - Twitter Post Summarization (route /beta-fellowship)
@@ -79,6 +80,10 @@ Only kept one button with no text showing in UI. Need to click on `start` button
 version 3: `InteractiveUI.js`
 ![Screenshot 2023-02-06 at 3 17 39 PM](https://user-images.githubusercontent.com/22360911/217076113-4a041f37-3a25-402e-8d34-0d0831e04694.png)
 This version ask a follow up question and start listening to users again to engage the conversation.
+
+version 4: modified `InteractiveUI.js` to make the UI simplier
+<img width="1145" alt="interactive-simplified" src="https://user-images.githubusercontent.com/22360911/228930160-e9c512fb-66c8-4b25-b8d7-9b9e14a7fffa.png">
+
 
 # Twitter dependency url
 
