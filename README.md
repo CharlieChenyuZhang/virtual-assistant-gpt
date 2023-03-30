@@ -1,3 +1,13 @@
+# Note
+
+This repo is an experimental project built by Charlie Chenyu Zhang hosted on AWS
+
+# how to run the app
+
+```
+npm ci && npm run start
+```
+
 # todos / feature
 
 - have a language toggle at the top righr corner to toggle it to 简体中文
