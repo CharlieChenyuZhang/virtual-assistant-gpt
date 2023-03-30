@@ -4,6 +4,9 @@ This repo is an experimental project built by Charlie Chenyu Zhang hosted on AWS
 
 # how to run the app
 
+create a .env file with
+REACT_APP_OPENAI_API_KEY="<Your OpenAI api key>"
+
 ```
 npm ci && npm run start
 ```
@@ -75,7 +78,7 @@ https://github.com/saurabhnemade/react-twitter-embed
 twitter documentation
 https://developer.twitter.com/en/docs/twitter-for-websites/embedded-tweets/guides/embedded-tweet-javascript-factory-function
 
-# backend - WIP
+# backend - this is the backend piece with the Twitter API access
 
 https://github.com/CharlieChenyuZhang/chatgpt-backend
 
