@@ -2,6 +2,9 @@
 
 This repo is an experimental project built by Charlie Chenyu Zhang hosted on AWS
 
+Routes you can access
+/gpt - the chatbot
+
 # how to run the app
 
 create a .env file with
