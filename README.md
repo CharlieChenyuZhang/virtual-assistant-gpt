@@ -14,6 +14,13 @@ REACT_APP_OPENAI_API_KEY="<Your OpenAI api key>"
 npm ci && npm run start
 ```
 
+# What you will find in this repo
+
+1. landing page (route / )
+2. A few experiments
+   - experiment 1 - ChatGPT + Conversational Layer (route /gpt)
+   - experiment 2 - Twitter Post Summarization (route /beta-fellowship)
+
 # todos / feature
 
 - have a language toggle at the top righr corner to toggle it to 简体中文
