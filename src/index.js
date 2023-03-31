@@ -3,6 +3,7 @@ import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./App";
 import LandingPage from "./components/LandingPage";
+import TextToImage from "./components/TextToImage";
 // import reportWebVitals from "./reportWebVitals";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Huggingface from "./Huggingface";
@@ -16,6 +17,10 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <LandingPage />,
+  },
+  {
+    path: "/mobius",
+    element: <TextToImage />,
   },
   // deployed the portfolio management for beta fellowship
   {
