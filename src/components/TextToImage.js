@@ -34,6 +34,7 @@ const slides = photos.map(({ src, width, height, images }) => ({
 const MainContainer = styled.div`
   background-color: #27272a;
   height: 100%;
+  min-height: 100vh;
 `;
 
 const HeaderContainer = styled.div`
