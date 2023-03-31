@@ -53,7 +53,7 @@ export default function TextToImage() {
         <Typography
           variant="h1"
           fontSize="5.2rem"
-          marginTop="64px"
+          marginTop="128px"
           noWrap
           component="div"
           sx={{
@@ -67,13 +67,14 @@ export default function TextToImage() {
         <Typography
           variant="h5"
           fontSize="1.2rem"
-          noWrap
           component="div"
           sx={{
             mr: 2,
             fontFamily: "Roboto",
             color: "white",
             textDecoration: "none",
+            margin: "0 20px",
+            textAlign: "center",
           }}
         >
           unprecedented photorealism x deep level of language understanding
