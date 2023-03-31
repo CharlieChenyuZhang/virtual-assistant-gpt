@@ -15,15 +15,10 @@ import styled from "styled-components";
 import photos from "./photos";
 import ResponsiveApBar from "./ResponsiveAppBar";
 import Typography from "@mui/material/Typography";
-import TextField from "@mui/material/TextField";
-import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
 import InputBase from "@mui/material/InputBase";
-import Divider from "@mui/material/Divider";
 import IconButton from "@mui/material/IconButton";
-import MenuIcon from "@mui/icons-material/Menu";
-import SearchIcon from "@mui/icons-material/Search";
-import DirectionsIcon from "@mui/icons-material/Directions";
+import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 
 const slides = photos.map(({ src, width, height, images }) => ({
   src,
@@ -38,13 +33,7 @@ const slides = photos.map(({ src, width, height, images }) => ({
 
 const MainContainer = styled.div`
   background-color: #27272a;
-`;
-
-const H1 = styled.h1`
-  font-size: 3.75rem;
-  line-height: 1;
-  font-weight: 700;
-  color: #fff;
+  height: 100vh;
 `;
 
 const HeaderContainer = styled.div`
@@ -55,7 +44,7 @@ const HeaderContainer = styled.div`
 
 export default function TextToImage() {
   const [index, setIndex] = useState(-1);
-
+  const [imageCount, setImageCount] = useState(photos.length);
   return (
     <MainContainer>
       <ResponsiveApBar></ResponsiveApBar>
@@ -107,13 +96,20 @@ export default function TextToImage() {
             placeholder="A cute corgi lives in a house of sushi..."
             inputProps={{ "aria-label": "search" }}
           />
-          <IconButton type="button" sx={{ p: "10px" }} aria-label="search">
-            <SearchIcon />
+          <IconButton
+            type="button"
+            sx={{ p: "10px" }}
+            aria-label="search"
+            onClick={() => {
+              setImageCount(4);
+            }}
+          >
+            <ArrowForwardIcon />
           </IconButton>
         </Paper>
       </HeaderContainer>
       <PhotoAlbum
-        photos={photos}
+        photos={photos.slice(0, imageCount)}
         layout="rows"
         targetRowHeight={200}
         onClick={({ index }) => setIndex(index)}
