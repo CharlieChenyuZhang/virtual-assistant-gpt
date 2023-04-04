@@ -4,6 +4,7 @@ import "./index.css";
 import App from "./App";
 import LandingPage from "./components/LandingPage";
 import TextToImage from "./components/TextToImage";
+import MiraclePlusCopilot2 from "./components/MiraclePlusCopilot2";
 // import reportWebVitals from "./reportWebVitals";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Huggingface from "./Huggingface";
@@ -21,6 +22,10 @@ const router = createBrowserRouter([
   {
     path: "/mobius",
     element: <TextToImage />,
+  },
+  {
+    path: "/miracleplus",
+    element: <MiraclePlusCopilot2 />,
   },
   // deployed the portfolio management for beta fellowship
   {
