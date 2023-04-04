@@ -13,7 +13,7 @@ import styled from "styled-components";
 // TODO: introducing three states. Listening; Speaking; Idling
 
 const configuration = new Configuration({
-  apiKey: process.env.REACT_APP_OPENAI_API_KEY,
+  apiKey: process.env.REACT_APP_MIRACLEPLUS_API_KEY,
 });
 
 const openai = new OpenAIApi(configuration);
