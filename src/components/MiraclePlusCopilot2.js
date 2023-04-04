@@ -39,7 +39,7 @@ const Header = styled.div`
 `;
 
 const Logo = styled.img`
-  width: 15rem;
+  width: 10.5rem;
   height: 7rem;
   /* position: fixed; */
 `;
