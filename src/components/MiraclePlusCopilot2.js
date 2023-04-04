@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import InteractiveUI from "./InteractiveUI";
-import logo from "../assets/MiraclePlusLogo.jpeg";
+import logo from "../assets/miracleplus-logo.png";
 import portfolio1 from "../assets/portfolios/beta-p-1.png";
 import portfolio2 from "../assets/portfolios/beta-p-2.png";
 import portfolio3 from "../assets/portfolios/beta-p-3.png";
