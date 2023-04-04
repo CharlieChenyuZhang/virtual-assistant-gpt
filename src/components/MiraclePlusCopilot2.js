@@ -99,27 +99,6 @@ const Button = styled.a`
   }
 `;
 
-const PickTweetContainer = styled.div`
-  display: flex;
-
-  @media only screen and (max-width: 992px) {
-    flex-direction: column;
-  }
-`;
-
-const TweetsContentContainer = styled.div`
-  margin-top: 50px;
-  flex-grow: 1;
-
-  @media only screen and (max-width: 992px) {
-    margin-top: 0;
-  }
-`;
-
-const Step = styled.span`
-  margin-right: 15px;
-`;
-
 const configuration = new Configuration({
   apiKey: process.env.REACT_APP_MIRACLEPLUS_API_KEY,
 });
