@@ -105,7 +105,7 @@ const configuration = new Configuration({
 
 const openai = new OpenAIApi(configuration);
 
-const PortfolioManagement = () => {
+const MiraclePlusCopilot2 = () => {
   const [sortingCriteria, setSortingCriteria] = useState({
     impression_count: false,
     like_count: true,
@@ -172,7 +172,7 @@ const PortfolioManagement = () => {
   }
 
   useEffect(() => {
-    document.getElementsByTagName("title")[0].text = "Beta Fellowship";
+    document.getElementsByTagName("title")[0].text = "MiraclePlus Copilot";
   });
 
   return (
@@ -231,4 +231,4 @@ const PortfolioManagement = () => {
   );
 };
 
-export default PortfolioManagement;
+export default MiraclePlusCopilot2;
