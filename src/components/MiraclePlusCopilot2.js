@@ -39,8 +39,8 @@ const Header = styled.div`
 `;
 
 const Logo = styled.img`
-  width: 10.5rem;
-  height: 7rem;
+  width: 20rem;
+  height: 5rem;
   /* position: fixed; */
 `;
 
