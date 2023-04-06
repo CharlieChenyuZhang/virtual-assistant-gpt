@@ -1,6 +1,6 @@
 # Note
 
-This repo is an experimental project built by Charlie Chenyu Zhang hosted on AWS
+This repo is an experimental project built by Charlie Chenyu Zhang hosted on AWS.
 
 Routes you can access
 /gpt - the chatbot
@@ -83,7 +83,6 @@ This version ask a follow up question and start listening to users again to enga
 
 version 4: modified `InteractiveUI.js` to make the UI simplier
 <img width="1145" alt="interactive-simplified" src="https://user-images.githubusercontent.com/22360911/228930160-e9c512fb-66c8-4b25-b8d7-9b9e14a7fffa.png">
-
 
 # Twitter dependency url
 
