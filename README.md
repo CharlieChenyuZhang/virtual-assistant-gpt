@@ -121,3 +121,7 @@ Twitter APIs:
 # language tutor ideas
 
 - use voice api to train and mimic customized voice based on characters
+
+# Auth0 and MongoDB
+
+Log in using your Gmail account charlie.chenyu.zhang@gmailcom

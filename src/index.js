@@ -46,7 +46,7 @@ const router = createBrowserRouter([
     element: <App />,
   },
   {
-    path: "/huggingface",
+    path: "/chinese-huggingface",
     element: <Huggingface />,
   },
 ]);
